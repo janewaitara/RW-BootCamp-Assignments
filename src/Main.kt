@@ -24,9 +24,23 @@ fun createDeck(): MutableSet<Card> {
 
 }
 
+fun dealHand(deck: MutableList<Card>,cardNumber: Int) : MutableList<Card>{
+
+    val cardList: MutableList<Card> = mutableListOf()
+
+    for(index in 1..cardNumber){
+        val card = createDeck().random()
+        cardList.add(card)
+    }
+
+    return cardList
+
+}
+
 fun main() {
 
-    println(createDeck().size)
+    println(createDeck())
+    println(dealHand(createDeck().toMutableList(),3))
 
     val redHeart = StringBuilder(
         "${27.toChar()}[31m\u2665${27.toChar()}[0m"
