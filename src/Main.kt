@@ -1,4 +1,10 @@
 
+
+data class Card (
+    val pip:String,
+    val suit: Char)
+
+
 fun main() {
 
     val redHeart = StringBuilder(
