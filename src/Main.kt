@@ -60,6 +60,8 @@ fun printCard(hand: MutableList<Card>) {
 
     val firstPip = when (pip1) {
         "K" -> pip1
+        "Q" -> pip1
+        "J" -> pip1
         "10" -> pip1
         "9" -> pip1
         "8" -> pip1
@@ -74,6 +76,8 @@ fun printCard(hand: MutableList<Card>) {
 
     val secondPip = when (pip2) {
         "K" -> pip2
+        "Q" -> pip2
+        "J" -> pip2
         "10" -> pip2
         "9" -> pip2
         "8" -> pip2
@@ -105,6 +109,8 @@ fun printCard(hand: MutableList<Card>) {
     }
 
 
+    val redSuit = StringBuilder("${27.toChar()}[31m$secondSuit${27.toChar()}[0m")
+
     println(
         """
     .------.
@@ -112,7 +118,7 @@ fun printCard(hand: MutableList<Card>) {
     |     .------.
     |   $firstSuit |$secondPip     |
     |     |      |
-    |     |   $secondSuit  |
+    |     |  $redSuit   |
     `-----|      |
           |     $secondPip|
           `------'""".trimIndent()
@@ -130,6 +136,8 @@ fun printResults(total: Int, hand: MutableList<Card>) {
 
     }
     printCard(hand)
+
+
     println("For a total of: $total")
     println(if (total == 21) "You Win!" else if (total == 22) "You Lose!" else "")
 
@@ -141,7 +149,7 @@ fun main() {
     //println(createDeck())
     val hand = dealHand(createDeck().toMutableList(), 2)
     val totalSum = getTotal(hand)
-    println(hand)
+   // println(hand)
     printResults(total = totalSum, hand = hand)
 
 
