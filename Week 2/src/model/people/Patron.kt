@@ -9,7 +9,7 @@ class Patron(
 
     override fun toString(): String {
 
-        return " " // TODO format the data in any way you want! :]
+        return "$firstName $lastName whose email is $email is a Patron" // TODO format the data in any way you want! :]
     }
 
 
