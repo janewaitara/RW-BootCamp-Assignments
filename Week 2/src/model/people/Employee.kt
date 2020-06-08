@@ -11,7 +11,7 @@ class Employee(
 ) : Person(firstName = firstName, lastName = lastName, email = email, phoneNumber = phoneNumber) {
 
     override fun toString(): String {
-        return "" // TODO format the data in any way you want! :]
+        return "$firstName, $lastName was hired on $hireDate and is paid $salary" // TODO format the data in any way you want! :]
     }
 
     var clockedInTime: LocalDateTime? = null
