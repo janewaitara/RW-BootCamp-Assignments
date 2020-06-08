@@ -8,7 +8,8 @@ class Patron(
 ) : Person(firstName = firstName, lastName = lastName, email = email, phoneNumber = phoneNumber) {
 
     override fun toString(): String {
-        return "" // TODO format the data in any way you want! :]
+
+        return " " // TODO format the data in any way you want! :]
     }
 
 

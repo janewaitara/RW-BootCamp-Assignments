@@ -21,6 +21,12 @@ class Employee(
      * */
     fun clockIn() {
 
+        val currentClockInTime = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+        val formatted = currentClockInTime.format(formatter)
+
+        println("$firstName $lastName clocked in at $formatted")
+
     }
 
     // TODO same as above, but times for clocking out!
