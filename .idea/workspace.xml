@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="77a7fb73-e4d8-4d05-b0ac-09a1e98f3997" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Week 2/src/model/people/Employee.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Week 2/src/model/people/Employee.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week 2/src/model/people/Patron.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Week 2/src/model/people/Patron.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,8 +78,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Week 2/src/model/people/Employee.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+            <state relative-caret-position="45">
+              <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -127,8 +126,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-24" />
-    <option name="y" value="32" />
+    <option name="x" value="265" />
+    <option name="y" value="68" />
     <option name="width" value="729" />
     <option name="height" value="736" />
   </component>
@@ -281,12 +280,12 @@
       <workItem from="1590952208557" duration="819000" />
       <workItem from="1591061572615" duration="333000" />
       <workItem from="1591586799406" duration="3727000" />
-      <workItem from="1591633576458" duration="920000" />
+      <workItem from="1591633576458" duration="1355000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25012000" />
+    <option name="totallyTimeSpent" value="25447000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -462,8 +461,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Week 2/src/model/people/Employee.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+        <state relative-caret-position="45">
+          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
         </state>
       </provider>
     </entry>

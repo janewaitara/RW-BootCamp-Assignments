@@ -14,6 +14,7 @@ class Employee(
         return "" // TODO format the data in any way you want! :]
     }
 
+    var clockedInTime: LocalDateTime? = null
     /**
      * Prints a time of clocking in, in a nice format.
      *
@@ -25,12 +26,20 @@ class Employee(
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
         val formatted = currentClockInTime.format(formatter)
 
+        clockedInTime = formatted //updates the clockIn time
+
         println("$firstName $lastName clocked in at $formatted")
 
     }
 
     // TODO same as above, but times for clocking out!
     fun clockOut() {
+        if (clockedInTime != null) {
+            val currentClockOutTime = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+            val formatted = currentClockOutTime.format(formatter)
 
+            println("$firstName $lastName clocked out at $formatted")
+        }
     }
 }
