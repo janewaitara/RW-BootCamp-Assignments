@@ -13,6 +13,7 @@ class CafeController {
 
     // shelter related things // TODO make sure to fill in the data!
     private val shelters = dummyShelters.toMutableSet()
+    val allAdoptedCats: MutableList<Cat> = mutableListOf()
     var catInShelter1 = dummyCats.filter { it.shelterId == shelters.elementAt(0).id }.toMutableSet()
     var catInShelter2 = dummyCats.filter { it.shelterId == shelters.elementAt(1).id }.toMutableSet()
 
@@ -62,7 +63,6 @@ class CafeController {
      * */
     fun getNumberOfAdoptionsPerShelter(): Map<String, Int> {
         val allAdopters = cafe.getAdopters()
-        val allAdoptedCats: MutableList<Cat> = mutableListOf()
         allAdopters.forEach { person ->
             person.cats.forEach { cat ->
                 allAdoptedCats.add(cat)
@@ -79,6 +79,11 @@ class CafeController {
     }
 
     fun getUnadoptedCats(): Set<Cat> {
+        var unAdoptedCats = dummyCats.toMutableList()
 
+        allAdoptedCats.forEach { cat ->
+            unAdoptedCats.remove(cat)
+        }
+        return unAdoptedCats.toSet()
     }
 }
