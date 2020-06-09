@@ -1,9 +1,6 @@
 package model.caffe
 
-import helper.dummyEmployees
-import helper.dummyPatrons
-import helper.dummyReceipts
-import helper.dummySponsorShips
+import helper.*
 import model.animals.Cat
 import model.people.Employee
 import model.people.Person
@@ -71,6 +68,7 @@ class Cafe {
 
     fun addSponsorship(catId: String, personId: String) {
         // TODO add the sponsorship
+        sponsorships.add(Sponsorship(personId,catId))
     }
 
     fun getWorkingEmployees(): Set<Employee> = employees
@@ -80,7 +78,8 @@ class Cafe {
     }
 
     fun getSponsoredCats(): Set<Cat> {
-
+        val sponsoredCats = dummyCats.filter { it.sponsorships.isNotEmpty()}
+        return sponsoredCats.toSet()
     }
 
     fun getMostPopularCats(): Set<Cat> {

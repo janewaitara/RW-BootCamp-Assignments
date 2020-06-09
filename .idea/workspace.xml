@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="77a7fb73-e4d8-4d05-b0ac-09a1e98f3997" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Week 2/src/helper/testData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Week 2/src/helper/testData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week 2/src/model/caffe/Receipt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Week 2/src/model/caffe/Receipt.kt" afterDir="false" />
-    </list>
+    <list default="true" id="77a7fb73-e4d8-4d05-b0ac-09a1e98f3997" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,19 +28,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="59" />
+            <state relative-caret-position="30">
+              <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Week 2/src/helper/testData.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
+            <state relative-caret-position="213">
               <caret line="49" column="1" lean-forward="true" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
               <folding>
                 <element signature="e#16#210#0" expanded="true" />
@@ -88,15 +85,15 @@
         <option value="$PROJECT_DIR$/Week 2/src/model/people/Employee.kt" />
         <option value="$PROJECT_DIR$/Week 2/src/model/shelter/Shelter.kt" />
         <option value="$PROJECT_DIR$/Week 2/src/model/caffe/Product.kt" />
-        <option value="$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt" />
         <option value="$PROJECT_DIR$/Week 2/src/helper/testData.kt" />
         <option value="$PROJECT_DIR$/Week 2/src/model/caffe/Receipt.kt" />
+        <option value="$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="143" />
+    <option name="x" value="83" />
+    <option name="y" value="252" />
     <option name="width" value="554" />
     <option name="height" value="601" />
   </component>
@@ -249,12 +246,12 @@
       <workItem from="1590952208557" duration="819000" />
       <workItem from="1591061572615" duration="333000" />
       <workItem from="1591586799406" duration="3727000" />
-      <workItem from="1591633576458" duration="24609000" />
+      <workItem from="1591633576458" duration="25449000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48701000" />
+    <option name="totallyTimeSpent" value="49541000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -266,7 +263,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="208" y="59" width="554" height="601" extended-state="0" />
+    <frame x="83" y="252" width="554" height="601" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.35826772" />
@@ -286,7 +283,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.71986973" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.6186253" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.6165254" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32935917" />
       <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32994527" />
@@ -477,16 +474,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Week 2/src/helper/testData.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="49" column="1" lean-forward="true" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
-          <folding>
-            <element signature="e#16#210#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Week 2/src/model/caffe/Product.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -496,8 +483,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="59" />
+        <state relative-caret-position="30">
+          <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Week 2/src/helper/testData.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="49" column="1" lean-forward="true" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
+          <folding>
+            <element signature="e#16#210#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
