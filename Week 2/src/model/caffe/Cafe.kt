@@ -1,11 +1,14 @@
 package model.caffe
 
+import helper.dummyEmployees
+import helper.dummyPatrons
+import helper.dummyReceipts
+import helper.dummySponsorShips
 import model.animals.Cat
 import model.people.Employee
 import model.people.Person
 
 class Cafe {
-
 
     // cafe related stuff
 
@@ -15,28 +18,33 @@ class Cafe {
      * Make sure to add your receipts to each set, with your data.
      * */
     private val receiptsByDay = mutableMapOf(
-        "Monday" to mutableSetOf<Receipt>(),
-        "Tuesday" to mutableSetOf<Receipt>(),
-        "Wednesday" to mutableSetOf<Receipt>(),
-        "Thursday" to mutableSetOf<Receipt>(),
-        "Friday" to mutableSetOf<Receipt>(),
-        "Saturday" to mutableSetOf<Receipt>(),
-        "Sunday" to mutableSetOf<Receipt>()
+        "Monday" to dummyReceipts,
+        "Tuesday" to mutableSetOf(dummyReceipts.elementAt(0), dummyReceipts.elementAt(1)),
+        "Wednesday" to mutableSetOf(),
+        "Thursday" to mutableSetOf(dummyReceipts.elementAt(2), dummyReceipts.elementAt(4)),
+        "Friday" to mutableSetOf(dummyReceipts),
+        "Saturday" to mutableSetOf(dummyReceipts.elementAt(3), dummyReceipts.elementAt(4)),
+        "Sunday" to mutableSetOf()
     )
 
     // maybe as employees check in, you can add them to the list of working employees!
-    private val employees = mutableSetOf<Employee>()
-    private val customers = mutableSetOf<Person>()
+    private val employees = dummyEmployees.toMutableSet()
+    private val customers = dummyPatrons.toMutableSet()
 
     // make sure to add sponsorships and tie them to people!
-    private val sponsorships = mutableSetOf<Sponsorship>()
+    private val sponsorships = dummySponsorShips
 
     // TODO Add logic for checking in and checking out!
     fun checkInEmployee(employee: Employee) {
 
+        employee.clockIn()
+        employees.add(employee)
     }
 
     fun checkOutEmployee(employee: Employee) {
+
+        employee.clockOut()
+        employees.remove(employee)
 
     }
 
