@@ -110,4 +110,24 @@ class Cafe {
     fun getAdopters(): List<Person> {
         return (employees + customers).filter { it.cats.isNotEmpty() }
     }
+/* determine the total number of customers (both employees who bought stuff and regular
+   patrons) for the day*/
+fun getTotalNumberOfCustomersForDay(day: String){
+    var numberOfEmployees = 0
+    var numberOfPatrons = 0
+    var receiptForDay = receiptsByDay[day] ?: return //no such day
+
+    receiptForDay.forEach { receipt ->
+        val customerId =  receipt.customerId
+        if (customerId in employees.map{ it.id }){
+            numberOfEmployees++
+        }else{
+            numberOfPatrons++
+        }
+    }
+
+    println("On $day,you had ${numberOfEmployees + numberOfPatrons} customers.\n" +
+            " $numberOfEmployees we employees and $numberOfPatrons were normal customers")
+}
+
 }
