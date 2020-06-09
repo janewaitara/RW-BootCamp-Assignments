@@ -1,6 +1,10 @@
 package model.people
 
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 class Employee(
+    id: String,
     firstName: String,
     lastName: String,
     email: String,
@@ -8,13 +12,13 @@ class Employee(
     val salary: Double,
     val socialSecurityNumber: String,
     val hireDate: String
-) : Person(firstName = firstName, lastName = lastName, email = email, phoneNumber = phoneNumber) {
+) : Person(id= id,firstName = firstName, lastName = lastName, email = email, phoneNumber = phoneNumber) {
 
     override fun toString(): String {
-        return "$firstName, $lastName was hired on $hireDate and is paid $salary" // TODO format the data in any way you want! :]
+        return "$firstName, $lastName, security number $socialSecurityNumber was hired on $hireDate and is paid $salary" // TODO format the data in any way you want! :]
     }
 
-    var clockedInTime: LocalDateTime? = null
+    var clockedInTime: String? = null
     /**
      * Prints a time of clocking in, in a nice format.
      *
