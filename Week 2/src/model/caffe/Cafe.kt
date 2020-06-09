@@ -56,8 +56,17 @@ class Cafe {
 
     fun getReceipt(items: List<Product>, customerId: String): Receipt {
         // TODO return a receipt! Also make sure to check if customer is also an employee
+        val employeeId = employees.map { it.id } //maps all employee Ids into a list
+        val isEmployee = employeeId.contains(customerId) //checks whether customer is an employee
+        val prices = items.map { it.price } //maps all prices
+        val totalPrice = if (isEmployee)  prices.sum() * 0.85 else prices.sum()
 
-        return Receipt()
+        val idOfReceipt = dummyReceipts.size + 1 //this is the id of the new receipt in the dummy receipts since the
+        // id go with the size of the list of Receipts
+        val receipt = Receipt(idOfReceipt.toString(),customerId,items,totalPrice)
+        dummyReceipts.add(receipt) //add the receipt to the dummy receipts
+
+        return receipt
     }
 
     fun addSponsorship(catId: String, personId: String) {

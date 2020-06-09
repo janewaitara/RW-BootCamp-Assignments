@@ -6,5 +6,5 @@ class Receipt (
     val customerId: String,
     val product: List<Product>,
     val totalPrice: Double,
-    var catsAdopted: MutableSet<Cat>
+    var catsAdopted: MutableSet<Cat> = mutableSetOf()
 )

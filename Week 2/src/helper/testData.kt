@@ -33,8 +33,9 @@ val gender = Pair("male","female")
 val dummySponsorShips = mutableSetOf(
     Sponsorship(dummyPatrons.elementAt(0).id,"1"),
     Sponsorship(dummyPatrons.elementAt(2).id,"4"),
-    Sponsorship(dummyPatrons.elementAt(3).id,"3"),
-    Sponsorship(dummyPatrons.elementAt(1).id,"1")
+    Sponsorship(dummyEmployees.elementAt(3).id,"3"),
+    Sponsorship(dummyPatrons.elementAt(1).id,"1"),
+    Sponsorship(dummyEmployees.elementAt(1).id,"1")
 )
 
 val dummyCats = setOf(
@@ -57,12 +58,11 @@ val dummyProducts = listOf(
 val dummyReceipts = mutableSetOf(
     Receipt("1", dummyEmployees.elementAt(0).id, listOf(dummyProducts[1], dummyProducts[2]), dummyProducts[1].price + dummyProducts[2].price,
         mutableSetOf(dummyCats.elementAt(0),dummyCats.elementAt(1))),
-    Receipt("2", dummyEmployees.elementAt(2).id, listOf(dummyProducts[0], dummyProducts[2]), dummyProducts[0].price + dummyProducts[2].price,
+    Receipt("2", dummyPatrons.elementAt(2).id, listOf(dummyProducts[0], dummyProducts[2]), dummyProducts[0].price + dummyProducts[2].price,
         mutableSetOf(dummyCats.elementAt(5),dummyCats.elementAt(4))),
-    Receipt("3", dummyEmployees.elementAt(3).id, listOf(dummyProducts[0], dummyProducts[1]), dummyProducts[0].price + dummyProducts[1].price,
-        mutableSetOf()),
-    Receipt("4", dummyEmployees.elementAt(1).id, listOf(dummyProducts[0], dummyProducts[2]), dummyProducts[0].price + dummyProducts[2].price,
+    Receipt("3", dummyEmployees.elementAt(3).id, listOf(dummyProducts[0], dummyProducts[1]), dummyProducts[0].price + dummyProducts[1].price),
+    Receipt("4", dummyPatrons.elementAt(1).id, listOf(dummyProducts[0], dummyProducts[2]), dummyProducts[0].price + dummyProducts[2].price,
         mutableSetOf(dummyCats.elementAt(6),dummyCats.elementAt(7))),
-    Receipt("5", dummyEmployees.elementAt(0).id, listOf(dummyProducts[0], dummyProducts[1]), dummyProducts[0].price + dummyProducts[1].price,
+    Receipt("5", dummyPatrons.elementAt(3).id, listOf(dummyProducts[0], dummyProducts[1]), dummyProducts[0].price + dummyProducts[1].price,
         mutableSetOf(dummyCats.elementAt(2),dummyCats.elementAt(1)))
 )
