@@ -12,8 +12,15 @@ class CafeController {
     private val cafe = Cafe()
 
     // shelter related things // TODO make sure to fill in the data!
-    private val shelters = mutableSetOf<Shelter>()
-    private val shelterToCat = mutableMapOf<Shelter, MutableSet<Cat>>()
+    private val shelters = dummyShelters.toMutableSet()
+    var catInShelter1 = dummyCats.filter { it.shelterId == shelters.elementAt(0).id }.toMutableSet()
+    var catInShelter2 = dummyCats.filter { it.shelterId == shelters.elementAt(1).id }.toMutableSet()
+
+    private val shelterToCat = mutableMapOf<Shelter, MutableSet<Cat>>(
+        shelters.elementAt(0) to catInShelter1,
+        shelters.elementAt(1) to catInShelter2
+
+    )
 
     fun adoptCat(catId: String, person: Person) {
         // check if cats exist, and retrieve its entry!
@@ -55,8 +62,20 @@ class CafeController {
      * */
     fun getNumberOfAdoptionsPerShelter(): Map<String, Int> {
         val allAdopters = cafe.getAdopters()
+        val allAdoptedCats: MutableList<Cat> = mutableListOf()
+        allAdopters.forEach { person ->
+            person.cats.forEach { cat ->
+                allAdoptedCats.add(cat)
+            }
+        }
+        val (adoptedCatsInShelter1, adoptedCatsInShelter2) =
+            allAdoptedCats.partition { it.shelterId == shelters.elementAt(0).id }
 
-        return emptyMap() // TODO find which cats belong to which shelter, and create a map of Shelter name to number of adoptions
+        val adoptedCatsShelter = mutableMapOf(
+            shelters.elementAt(0).name to adoptedCatsInShelter1.size,
+            shelters.elementAt(1).name to adoptedCatsInShelter2.size
+        )
+        return adoptedCatsShelter // TODO find which cats belong to which shelter, and create a map of Shelter name to number of adoptions
     }
 
     fun getUnadoptedCats(): Set<Cat> {
