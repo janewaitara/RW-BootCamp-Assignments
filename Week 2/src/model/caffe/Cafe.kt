@@ -82,8 +82,9 @@ class Cafe {
         return sponsoredCats.toSet()
     }
 
+    //gets popular cats from the breed with the highest number of cats
     fun getMostPopularCats(): Set<Cat> {
-        val popularCats = dummyCats.groupBy { it.breed }.values.map { value -> value }.maxBy { it.size }
+        val popularCats = getSponsoredCats().groupBy { it.breed }.values.map { value -> value }.maxBy { it.size }
         return popularCats?.toSet()
 
     }
