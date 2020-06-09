@@ -93,7 +93,18 @@ class Cafe {
     }
 
     fun getTopSellingItems(): Set<Product> {
+        //get all receipts
+        var allReceipts =  receiptsByDay.values.flatMap { it }
+        //products in the receipts
+        //put the products in the receipt in a list and group them by the product
+        val productGroup = allReceipts.flatMap { it.product }.groupBy { it }
 
+        //mapValues Returns a new map with entries having the keys of this map and the values obtained by applying the transform function to each entry in the Map.
+        //the values changes to their respective sizes and then gets the maximum value and returns the key
+        var mostSoldProducts = productGroup.mapValues { it.value.size }.maxBy { it.value }?.key
+
+        return mostSoldProducts
+    }
     }
 
     fun getAdopters(): List<Person> {
