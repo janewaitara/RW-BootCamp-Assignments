@@ -83,6 +83,8 @@ class Cafe {
     }
 
     fun getMostPopularCats(): Set<Cat> {
+        val popularCats = dummyCats.groupBy { it.breed }.values.map { value -> value }.maxBy { it.size }
+        return popularCats?.toSet()
 
     }
 
