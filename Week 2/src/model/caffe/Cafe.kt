@@ -74,6 +74,9 @@ class Cafe {
     fun getWorkingEmployees(): Set<Employee> = employees
 
     fun getAdoptedCats(): Set<Cat> {
+        //returns cats associated with customers or employees
+        val adoptedCats = (employees + dummyPatrons ).flatMap { it.cats }
+        return adoptedCats.toSet()
 
     }
 
@@ -82,7 +85,7 @@ class Cafe {
         return sponsoredCats.toSet()
     }
 
-    //gets popular cats from the breed with the highest number of cats
+    //gets popular cats from the breed with the highest number of cats sponsorship
     fun getMostPopularCats(): Set<Cat> {
         val popularCats = getSponsoredCats().groupBy { it.breed }.values.map { value -> value }.maxBy { it.size }
         return popularCats?.toSet()
