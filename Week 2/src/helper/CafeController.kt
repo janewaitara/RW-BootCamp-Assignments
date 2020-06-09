@@ -40,6 +40,13 @@ class CafeController {
          * You can random the day from a List, or check from the Date object!
          * */
         val receipt = cafe.getReceipt(items, customerId)
+        println(
+            "Customer ${receipt.customerId} has as receipt number of ${receipt.id} \n " +
+                    "purchased items: $items \n" +
+                    "Total price: ${receipt.totalPrice} \n" +
+                    if (receipt.catsAdopted != null) "Cats adopted: ${receipt.catsAdopted}"
+                    else "No cats adopted"
+        )
     }
 
     /**
