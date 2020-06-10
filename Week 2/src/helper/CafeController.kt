@@ -97,9 +97,11 @@ class CafeController {
         var unAdoptedCats = getUnadoptedCats()
         var unSponsored = getUnSponsoredCats()
         var bothUnsponsoredUnAdopted = listOf(unAdoptedCats,unSponsored)
-        var isNotAdopted = (dummyEmployees + dummyPatrons ).flatMap { it.cats }.isEmpty()
+        var listOfAdopted = (dummyEmployees + dummyPatrons ).flatMap { it.cats }
 
-        var unSponsoredUnAdoptedCats = bothUnsponsoredUnAdopted.flatMap { cats -> cats.filter { it.sponsorships.isEmpty() &&  isNotAdopted} }
+        var unAdopted = dummyCats.toMutableList().removeAll(listOfAdopted)
+
+        var unSponsoredUnAdoptedCats = bothUnsponsoredUnAdopted.flatMap { cats -> cats.filter { it.sponsorships.isEmpty() &&  unAdopted} }
 
         return unSponsoredUnAdoptedCats
     }
@@ -108,9 +110,11 @@ class CafeController {
         var unAdoptedCats = getUnadoptedCats()
         var sponsoredCats = cafe.getSponsoredCats().toList()
         var bothsponsoredUnAdopted = listOf(unAdoptedCats,sponsoredCats)
-        var isNotAdopted = (dummyEmployees + dummyPatrons ).flatMap { it.cats }.isEmpty()
+        var listOfAdopted = (dummyEmployees + dummyPatrons ).flatMap { it.cats }
 
-        var sponsoredUnAdoptedCats = bothsponsoredUnAdopted.flatMap { cats -> cats.filter { it.sponsorships.isNotEmpty() &&  isNotAdopted} }
+        var unAdopted = dummyCats.toMutableList().removeAll(listOfAdopted)
+
+        var sponsoredUnAdoptedCats = bothsponsoredUnAdopted.flatMap { cats -> cats.filter { it.sponsorships.isNotEmpty() &&  unAdopted} }
 
         return sponsoredUnAdoptedCats
     }

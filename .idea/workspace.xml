@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77a7fb73-e4d8-4d05-b0ac-09a1e98f3997" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Week 2/src/helper/CafeController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Week 2/src/helper/CafeController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Week 2/src/helper/CafeController.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12">
-              <caret line="105" selection-start-line="105" selection-end-line="105" />
+            <state relative-caret-position="389">
+              <caret line="114" column="74" selection-start-line="114" selection-start-column="74" selection-end-line="114" selection-end-column="74" />
               <folding>
                 <element signature="e#16#147#0" expanded="true" />
               </folding>
@@ -33,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="147" column="5" lean-forward="true" selection-start-line="147" selection-start-column="5" selection-end-line="147" selection-end-column="5" />
+            <state relative-caret-position="345">
+              <caret line="128" column="45" lean-forward="true" selection-start-line="128" selection-start-column="45" selection-end-line="128" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -50,15 +51,6 @@
               <folding>
                 <element signature="e#16#210#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Week 2/src/model/animals/Cat.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -98,16 +90,16 @@
         <option value="$PROJECT_DIR$/Week 2/src/model/caffe/Product.kt" />
         <option value="$PROJECT_DIR$/Week 2/src/helper/testData.kt" />
         <option value="$PROJECT_DIR$/Week 2/src/model/caffe/Receipt.kt" />
-        <option value="$PROJECT_DIR$/Week 2/src/helper/CafeController.kt" />
         <option value="$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt" />
+        <option value="$PROJECT_DIR$/Week 2/src/helper/CafeController.kt" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="41" />
     <option name="y" value="27" />
-    <option name="width" value="665" />
-    <option name="height" value="712" />
+    <option name="width" value="596" />
+    <option name="height" value="734" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -259,12 +251,12 @@
       <workItem from="1591061572615" duration="333000" />
       <workItem from="1591586799406" duration="3727000" />
       <workItem from="1591633576458" duration="28836000" />
-      <workItem from="1591747624263" duration="8295000" />
+      <workItem from="1591747624263" duration="11907000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61223000" />
+    <option name="totallyTimeSpent" value="64835000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -276,7 +268,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="41" y="27" width="665" height="712" extended-state="0" />
+    <frame x="41" y="27" width="596" height="734" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.3565737" />
@@ -472,16 +464,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Week 2/src/helper/testData.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="49" column="1" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
-          <folding>
-            <element signature="e#16#210#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Week 2/src/model/people/Employee.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -499,20 +481,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Week 2/src/helper/CafeController.kt">
+    <entry file="file://$PROJECT_DIR$/Week 2/src/helper/testData.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12">
-          <caret line="105" selection-start-line="105" selection-end-line="105" />
+        <state relative-caret-position="337">
+          <caret line="49" column="1" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
           <folding>
-            <element signature="e#16#147#0" expanded="true" />
+            <element signature="e#16#210#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="147" column="5" lean-forward="true" selection-start-line="147" selection-start-column="5" selection-end-line="147" selection-end-column="5" />
+        <state relative-caret-position="345">
+          <caret line="128" column="45" lean-forward="true" selection-start-line="128" selection-start-column="45" selection-end-line="128" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Week 2/src/helper/CafeController.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="114" column="74" selection-start-line="114" selection-start-column="74" selection-end-line="114" selection-end-column="74" />
+          <folding>
+            <element signature="e#16#147#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

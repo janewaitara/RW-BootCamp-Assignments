@@ -92,7 +92,8 @@ class Cafe {
 
     }
 
-    fun getTopSellingItems(): Set<Product> {
+    fun getTopSellingItems(): Product? {
+
         //get all receipts
         var allReceipts =  receiptsByDay.values.flatMap { it }
         //products in the receipts
@@ -122,15 +123,19 @@ fun getTotalNumberOfCustomersForDay(day: String): Int{
     return numberOfEmployees + numberOfPatrons
 }
 //determine number of transactions on a Day
-fun getTransactionInDay(day: String): Int{
+fun getTransactionInDay(day: String){
     val receiptOnDay = receiptsByDay[day] ?: return
-    return receiptOnDay.size
+
+    println( if (receiptOnDay.size != 0){
+        "You made $receiptOnDay.size transactions today"
+    }else {" There were no transaction $day"}
+    )
 }
 
 fun getTotalNumberOfNonEmployeeCustomersForDay(day: String): Int{
 
     var numberOfPatrons = 0
-    val receiptForDay = receiptsByDay[day]  //no such day
+    val receiptForDay = receiptsByDay[day]
 
     receiptForDay?.forEach { receipt ->
         val customerId =  receipt.customerId
@@ -152,5 +157,7 @@ fun getTotalNumberOfEmployeeCustomersForDay(day: String): Int{
         }
     }
     return numberOfEmployees
+
+    //TODO topTenSellingItems
 }
 }
