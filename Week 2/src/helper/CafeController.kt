@@ -78,12 +78,18 @@ class CafeController {
         return adoptedCatsShelter // TODO find which cats belong to which shelter, and create a map of Shelter name to number of adoptions
     }
 
-    fun getUnadoptedCats(): Set<Cat> {
+    fun getUnadoptedCats(): List<Cat> {
         var unAdoptedCats = dummyCats.toMutableList()
 
         allAdoptedCats.forEach { cat ->
             unAdoptedCats.remove(cat)
         }
-        return unAdoptedCats.toSet()
+        return unAdoptedCats
+    }
+
+    fun getUnSponsoredCats(): List<Cat>{
+
+        val unSponsoredCats = dummyCats.filter { it.sponsorships.isEmpty()}
+        return unSponsoredCats
     }
 }
