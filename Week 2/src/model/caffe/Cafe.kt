@@ -121,6 +121,11 @@ fun getTotalNumberOfCustomersForDay(day: String): Int{
 
     return numberOfEmployees + numberOfPatrons
 }
+//determine number of transactions on a Day
+fun getTransactionInDay(day: String): Int{
+    val receiptOnDay = receiptsByDay[day] ?: return
+    return receiptOnDay.size
+}
 
 fun getTotalNumberOfNonEmployeeCustomersForDay(day: String): Int{
 
@@ -148,5 +153,4 @@ fun getTotalNumberOfEmployeeCustomersForDay(day: String): Int{
     }
     return numberOfEmployees
 }
-
 }
