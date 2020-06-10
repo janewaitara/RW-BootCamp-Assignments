@@ -112,22 +112,41 @@ class Cafe {
     }
 /* determine the total number of customers (both employees who bought stuff and regular
    patrons) for the day*/
-fun getTotalNumberOfCustomersForDay(day: String){
-    var numberOfEmployees = 0
-    var numberOfPatrons = 0
-    var receiptForDay = receiptsByDay[day] ?: return //no such day
-
-    receiptForDay.forEach { receipt ->
-        val customerId =  receipt.customerId
-        if (customerId in employees.map{ it.id }){
-            numberOfEmployees++
-        }else{
-            numberOfPatrons++
-        }
-    }
+fun getTotalNumberOfCustomersForDay(day: String): Int{
+    var numberOfEmployees = getTotalNumberOfEmployeeCustomersForDay(day)
+    var numberOfPatrons = getTotalNumberOfNonEmployeeCustomersForDay(day)
 
     println("On $day,you had ${numberOfEmployees + numberOfPatrons} customers.\n" +
             " $numberOfEmployees we employees and $numberOfPatrons were normal customers")
+
+    return numberOfEmployees + numberOfPatrons
+}
+
+fun getTotalNumberOfNonEmployeeCustomersForDay(day: String): Int{
+
+    var numberOfPatrons = 0
+    val receiptForDay = receiptsByDay[day]  //no such day
+
+    receiptForDay?.forEach { receipt ->
+        val customerId =  receipt.customerId
+        if (customerId in customers.map{ it.id }){
+            numberOfPatrons++
+        }
+    }
+    return numberOfPatrons
+}
+fun getTotalNumberOfEmployeeCustomersForDay(day: String): Int{
+
+    var numberOfEmployees= 0
+    val receiptForDay = receiptsByDay[day]  //no such day
+
+    receiptForDay?.forEach { receipt ->
+        val customerId =  receipt.customerId
+        if (customerId in employees.map{ it.id }){
+            numberOfEmployees++
+        }
+    }
+    return numberOfEmployees
 }
 
 }
