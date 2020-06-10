@@ -92,4 +92,26 @@ class CafeController {
         val unSponsoredCats = dummyCats.filter { it.sponsorships.isEmpty()}
         return unSponsoredCats
     }
+
+    fun getUnsponsoredUnadopted() : List<Cat>{
+        var unAdoptedCats = getUnadoptedCats()
+        var unSponsored = getUnSponsoredCats()
+        var bothUnsponsoredUnAdopted = listOf(unAdoptedCats,unSponsored)
+        var isNotAdopted = (dummyEmployees + dummyPatrons ).flatMap { it.cats }.isEmpty()
+
+        var unSponsoredUnAdoptedCats = bothUnsponsoredUnAdopted.flatMap { cats -> cats.filter { it.sponsorships.isEmpty() &&  isNotAdopted} }
+
+        return unSponsoredUnAdoptedCats
+    }
+
+    fun getsponsoredUnadopted() : List<Cat>{
+        var unAdoptedCats = getUnadoptedCats()
+        var sponsoredCats = cafe.getSponsoredCats().toList()
+        var bothsponsoredUnAdopted = listOf(unAdoptedCats,sponsoredCats)
+        var isNotAdopted = (dummyEmployees + dummyPatrons ).flatMap { it.cats }.isEmpty()
+
+        var sponsoredUnAdoptedCats = bothsponsoredUnAdopted.flatMap { cats -> cats.filter { it.sponsorships.isNotEmpty() &&  isNotAdopted} }
+
+        return sponsoredUnAdoptedCats
+    }
 }
