@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="77a7fb73-e4d8-4d05-b0ac-09a1e98f3997" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Week 2/src/helper/CafeController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Week 2/src/helper/CafeController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt" afterDir="false" />
-    </list>
+    <list default="true" id="77a7fb73-e4d8-4d05-b0ac-09a1e98f3997" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +22,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Week 2/src/helper/CafeController.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
+            <state relative-caret-position="661">
               <caret line="114" column="74" selection-start-line="114" selection-start-column="74" selection-end-line="114" selection-end-column="74" />
               <folding>
                 <element signature="e#16#147#0" expanded="true" />
@@ -37,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="128" column="45" lean-forward="true" selection-start-line="128" selection-start-column="45" selection-end-line="128" selection-end-column="45" />
+            <state relative-caret-position="1875">
+              <caret line="128" column="44" selection-start-line="128" selection-start-column="44" selection-end-line="128" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -46,7 +43,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Week 2/src/helper/testData.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
+            <state relative-caret-position="645">
               <caret line="49" column="1" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
               <folding>
                 <element signature="e#16#210#0" expanded="true" />
@@ -98,93 +95,22 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="41" />
     <option name="y" value="27" />
-    <option name="width" value="596" />
-    <option name="height" value="734" />
+    <option name="width" value="1185" />
+    <option name="height" value="662" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="RW-BootCamp-Assignments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RW-BootCamp-Assignments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RW-BootCamp-Assignments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RW-BootCamp-Assignments" type="462c0819:PsiDirectoryNode" />
-              <item name="Week 2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RW-BootCamp-Assignments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RW-BootCamp-Assignments" type="462c0819:PsiDirectoryNode" />
-              <item name="Week 2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RW-BootCamp-Assignments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RW-BootCamp-Assignments" type="462c0819:PsiDirectoryNode" />
-              <item name="Week 2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="helper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RW-BootCamp-Assignments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RW-BootCamp-Assignments" type="462c0819:PsiDirectoryNode" />
-              <item name="Week 2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RW-BootCamp-Assignments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RW-BootCamp-Assignments" type="462c0819:PsiDirectoryNode" />
-              <item name="Week 2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="animals" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RW-BootCamp-Assignments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RW-BootCamp-Assignments" type="462c0819:PsiDirectoryNode" />
-              <item name="Week 2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="caffe" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RW-BootCamp-Assignments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RW-BootCamp-Assignments" type="462c0819:PsiDirectoryNode" />
-              <item name="Week 2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="people" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RW-BootCamp-Assignments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RW-BootCamp-Assignments" type="462c0819:PsiDirectoryNode" />
-              <item name="Week 2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="shelter" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="kotlin" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Week 2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -252,11 +178,12 @@
       <workItem from="1591586799406" duration="3727000" />
       <workItem from="1591633576458" duration="28836000" />
       <workItem from="1591747624263" duration="11907000" />
+      <workItem from="1592256282415" duration="23000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64835000" />
+    <option name="totallyTimeSpent" value="64858000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -268,8 +195,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="41" y="27" width="596" height="734" extended-state="0" />
-    <editor active="true" />
+    <frame x="41" y="27" width="1185" height="662" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.3565737" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -408,13 +334,7 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.kts" />
-    <entry file="file://$PROJECT_DIR$/Week 3/src/Hello.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Week 3/src/Hello.kt" />
     <entry file="file://$PROJECT_DIR$/Week 2/src/model/people/Patron.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -457,13 +377,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Week 2/src/model/people/Person.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Week 2/src/model/people/Employee.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -481,9 +394,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Week 2/src/helper/CafeController.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="661">
+          <caret line="114" column="74" selection-start-line="114" selection-start-column="74" selection-end-line="114" selection-end-column="74" />
+          <folding>
+            <element signature="e#16#147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1875">
+          <caret line="128" column="44" selection-start-line="128" selection-start-column="44" selection-end-line="128" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Week 2/src/helper/testData.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
+        <state relative-caret-position="645">
           <caret line="49" column="1" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
           <folding>
             <element signature="e#16#210#0" expanded="true" />
@@ -491,20 +421,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Week 2/src/model/caffe/Cafe.kt">
+    <entry file="file://$PROJECT_DIR$/Week 2/src/model/people/Person.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="128" column="45" lean-forward="true" selection-start-line="128" selection-start-column="45" selection-end-line="128" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Week 2/src/helper/CafeController.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="114" column="74" selection-start-line="114" selection-start-column="74" selection-end-line="114" selection-end-column="74" />
-          <folding>
-            <element signature="e#16#147#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="105">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
         </state>
       </provider>
     </entry>
