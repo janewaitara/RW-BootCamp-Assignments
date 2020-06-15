@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/imageVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.475" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/midVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.775" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/viewVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@id/bottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/viewVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@id/topHorizontalGuideline" />
+
+    <ImageView
+        android:id="@+id/company_background_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.9"
+        android:contentDescription="@string/imageContentDescription"
+        android:scaleType="fitXY"
+        android:src="@drawable/building"
+        app:layout_constraintBottom_toTopOf="@+id/bottomHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/imageVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/topHorizontalGuideline" />
+
+    <TextView
+        android:id="@+id/company_name_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="end"
+        android:padding="@dimen/padding_standard"
+        android:text="@string/companyText"
+        android:textSize="@dimen/name_company_size"
+        app:layout_constraintBottom_toTopOf="@+id/bottomHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/imageVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/topHorizontalGuideline" />
+
+
+    <TextView
+        android:id="@+id/full_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nameText"
+        android:textSize="@dimen/name_company_size"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/location_text"
+        app:layout_constraintEnd_toStartOf="@+id/endVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/topHorizontalGuideline"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/location_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="@dimen/line_spacing_extra_text"
+        android:lineSpacingMultiplier="0.8"
+        android:paddingTop="@dimen/padding_address"
+        android:paddingBottom="@dimen/padding_address"
+        android:text="@string/locationText"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/phone_text"
+        app:layout_constraintEnd_toStartOf="@+id/endVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/midVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/full_name_text" />
+
+    <TextView
+        android:id="@+id/phone_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:text="@string/phoneText"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/email_text"
+        app:layout_constraintEnd_toStartOf="@+id/endVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/location_text" />
+
+    <TextView
+        android:id="@+id/email_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:text="@string/emailText"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/portfolioLink_text"
+        app:layout_constraintEnd_toStartOf="@+id/endVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/midVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/phone_text" />
+
+    <TextView
+        android:id="@+id/portfolioLink_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/portfolioText"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/bottomHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/endVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/email_text" />
+
+    <Button
+        android:id="@+id/change_bs_card_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:padding="@dimen/padding_standard"
+        android:text="@string/buttonText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bottomHorizontalGuideline" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
