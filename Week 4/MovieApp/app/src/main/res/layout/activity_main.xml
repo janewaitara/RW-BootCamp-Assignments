@@ -10,6 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         class = "com.janewaitara.movieapp.MovieListFragment"
-        android:id="@+id/todoListFragment"/>
+        android:id="@+id/movie_list_fragment"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
