@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
@@ -65,6 +66,9 @@ class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
 
     /***when a view is tapped, this method is called it notifies the listener(activity) that something has happened **/
     override fun movieItemClicked(movie: Movie) {
+        view?.let {
+            it.findNavController().navigate(R.id.action_movieListFragment_to_movieDetailFragment)
+        }
 
     }
 
