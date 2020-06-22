@@ -17,5 +17,18 @@
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="com.janewaitara.movieapp.MovieDetailFragment"
-        android:label="MovieDetailFragment" />
+        android:label="MovieDetailFragment" >
+        <argument
+            android:name="movie_title"
+            app:argType="string" />
+        <argument
+            android:name="movie_image"
+            app:argType="integer" />
+        <argument
+            android:name="movie_summary"
+            app:argType="string" />
+        <argument
+            android:name="movie_release_date"
+            app:argType="string" />
+    </fragment>
 </navigation>
