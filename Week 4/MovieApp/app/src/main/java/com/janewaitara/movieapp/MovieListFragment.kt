@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 /**
  * A simple [Fragment] subclass.
@@ -16,9 +18,10 @@ import android.view.ViewGroup
  * Use the [MovieListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MovieListFragment : Fragment() {
+class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
 
     private var listener: OnFragmentInteractionListener? = null
+    private lateinit var movieRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,13 @@ class MovieListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_movie_list, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        movieRecyclerView = view.findViewById(R.id.movieRecyclerView)
+        movieRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        movieRecyclerView.adapter = MovieAdapter(this)
     }
 
     override fun onAttach(context: Context) {
@@ -61,5 +71,10 @@ class MovieListFragment : Fragment() {
         fun newInstance():MovieListFragment{
             return  MovieListFragment()
         }
+    }
+
+    /***when a view is tapped, this method is called it notifies the listener(activity) that something has happened **/
+    override fun movieItemClicked(movie: Movie) {
+        listener?.onMovieListClicked(movie)
     }
 }
