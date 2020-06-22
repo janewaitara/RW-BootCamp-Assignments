@@ -1,6 +1,7 @@
 package com.janewaitara.movieapp
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -20,7 +21,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
  */
 class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
 
-    private var listener: OnFragmentInteractionListener? = null
     private lateinit var movieRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,17 +43,7 @@ class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
         movieRecyclerView.adapter = MovieAdapter(this)
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        }
-    }
 
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -75,6 +65,10 @@ class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
 
     /***when a view is tapped, this method is called it notifies the listener(activity) that something has happened **/
     override fun movieItemClicked(movie: Movie) {
-        listener?.onMovieListClicked(movie)
+
+    }
+
+    private fun showDetailsActivity(movie: Movie){
+
     }
 }
