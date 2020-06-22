@@ -10,9 +10,6 @@ import kotlinx.android.synthetic.main.fragment_movie_detail.*
 
 class MovieDetailFragment : Fragment() {
 
-    lateinit var movie: Movie
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,26 +23,11 @@ class MovieDetailFragment : Fragment() {
         arguments?.let {
             //getting the passed in args
             val args = MovieDetailFragmentArgs.fromBundle(it)
-            movie_title.text = args.movieTitle
-            movie_image.setImageResource(args.movieImage)
-            movie_summary.text = args.movieSummary
-            movie_release_date.text = args.movieReleaseDate
+            movie_title.text = args.movie.title
+            movie_image.setImageResource(args.movie.image)
+            movie_summary.text = args.movie.summary
+            movie_release_date.text = args.movie.releaseDate
         }
     }
 
-
-    companion object {
-
-        private val ARG_LIST = "list" //help to access the movie within the bundle
-
-        fun newInstance(movie: Movie):MovieDetailFragment {
-
-            val bundle = Bundle() //object with key,value pairs
-            bundle.putParcelable(ARG_LIST,movie) //put the list into the Bundle
-            val fragment = MovieDetailFragment ()
-            fragment.arguments = bundle //putting the bundle inside the fragment
-            return  fragment
-        }
-
-    }
 }

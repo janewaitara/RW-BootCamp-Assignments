@@ -26,6 +26,7 @@ class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
         movieRecyclerView = view.findViewById(R.id.movieRecyclerView)
         movieRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         movieRecyclerView.adapter = MovieAdapter(this)
+
     }
 
     override fun movieItemClicked(movie: Movie) {
@@ -34,7 +35,7 @@ class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
 
     private fun showDetailsActivity(movie: Movie){
         view?.let {
-            val action = MovieListFragmentDirections.actionMovieListFragmentToMovieDetailFragment(movie.title,movie.image,movie.summary,movie.releaseDate) //trigger the navigation and passing data
+            val action = MovieListFragmentDirections.actionMovieListFragmentToMovieDetailFragment(movie) //trigger the navigation and passing data
             it.findNavController().navigate(action)
         }
 

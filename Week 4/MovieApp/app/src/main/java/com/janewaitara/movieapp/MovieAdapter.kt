@@ -15,33 +15,51 @@ class MovieAdapter(val clickListener: MovieListClickListener) : RecyclerView.Ada
             "The Grudge",
             "A house is cursed by a vengeful ghost that dooms those who enter it with a violent death.",
             "January 3rd 2020",
-            R.drawable.under_water
+            R.drawable.thegrudge
+        ),
+        Movie("100",
+            "The Call of the Wild ",
+            "A sled dog struggles for survival in the wilds of the Yukon.",
+             "February 21st 2020",
+            R.drawable.thecallofwind
+
+        ), Movie("97",
+            "A Quiet Place Part II ",
+            "Following the events at home, the Abbott family now face the terrors of the outside world. " +
+                    "Forced to venture into the unknown, they realize the creatures that hunt by sound are not the only threats lurking beyond the sand path.",
+             "March 20th 2020",
+            R.drawable.quiet_place
         ),
         Movie(
             "95",
             "Underwater",
-            "A crew of oceanic researchers working for a deep sea drilling company try to get to safety after a mysterious earthquake devastates their deepwater research and drilling facility located at the bottom of the Mariana Trench.",
+            "A crew of oceanic researchers working for a deep sea drilling company" +
+                    " try to get to safety after a mysterious earthquake devastates their deepwater research " +
+                    "and drilling facility located at the bottom of the Mariana Trench.",
             "January 10th 2020",
             R.drawable.under_water
         ),
         Movie(
             "83",
             "Like a Boss",
-            "Two friends with very different ideals start a beauty company together. One is more practical while the other wants to earn her fortune and live a lavish lifestyle.",
+            "Two friends with very different ideals start a beauty company together. O" +
+                    "ne is more practical while the other wants to earn her fortune and live a lavish lifestyle.",
             "January 10th 2020",
             R.drawable.like_boss
         ),
         Movie(
             "124",
             "Bad Boys for life",
-            "Miami detectives Mike Lowrey and Marcus Burnett must face off against a mother-and-son pair of drug lords who wreak vengeful havoc on their city.",
+            "Miami detectives Mike Lowrey and Marcus Burnett must face off against a " +
+                    "mother-and-son pair of drug lords who wreak vengeful havoc on their city.",
             "January 17th 2020",
             R.drawable.bad_boys_for_life
         ),
         Movie(
             "101",
             "Dolitle",
-            "A physician who can talk to animals embarks on an adventure to find a legendary island with a young apprentice and a crew of strange pets.",
+            "A physician who can talk to animals embarks on an adventure to find a " +
+                    "legendary island with a young apprentice and a crew of strange pets.",
             "January 17th 2020",
             R.drawable.dolitte
         ),
@@ -78,7 +96,7 @@ class MovieAdapter(val clickListener: MovieListClickListener) : RecyclerView.Ada
             "Sonic the Hedgehog",
             "After discovering a small, blue, fast hedgehog, a small-town police officer must help him defeat an evil genius who wants to do experiments on him.",
             "February 14th 2020",
-            R.drawable.hedge_hog
+            R.drawable.hedgehog
         ),
         Movie(
             "109",

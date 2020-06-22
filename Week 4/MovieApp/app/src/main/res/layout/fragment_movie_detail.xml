@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MovieDetail">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/movie_image_card"
@@ -19,7 +18,6 @@
             android:id="@+id/movie_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/header_image_size"
-            android:layout_marginTop="@dimen/padding_half"
             android:contentDescription="@string/content_description_movie_image"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
@@ -34,7 +32,8 @@
         android:layout_marginStart="@dimen/padding_standard"
         android:layout_marginTop="@dimen/padding_standard"
         android:layout_marginEnd="@dimen/padding_standard"
-        android:textColor="@android:color/black"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent"
         android:textSize="@dimen/movie_name_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
