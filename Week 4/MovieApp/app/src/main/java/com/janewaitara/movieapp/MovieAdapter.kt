@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter(val clickListener: MovieListClickListener) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     private var movieList = mutableListOf(
         Movie(
@@ -40,13 +40,14 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         ),
         Movie(
             "101",
-            "Dolittle",
+            "Dolitle",
             "A physician who can talk to animals embarks on an adventure to find a legendary island with a young apprentice and a crew of strange pets.",
             "January 17th 2020",
             R.drawable.dolitte
         ),
         Movie(
-            "113", "The Gentlemen",
+            "113",
+            "The Gentlemen",
             "An American expat tries to sell off his highly profitable marijuana empire in London, triggering plots, schemes, bribery and blackmail in an attempt to steal his domain out from under him.",
             "January 24th 2020",
             R.drawable.gentle_men
@@ -60,7 +61,7 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         ),
         Movie(
             "109",
-            "rhythm Section",
+            "Rhythm Section",
             "A woman seeks revenge against those who orchestrated a plane crash that killed her family.",
             "January 31st 2020",
             R.drawable.rhythm
@@ -81,14 +82,19 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         ),
         Movie(
             "109",
-            "fantasy_island",
+            "Fantasy island",
             "When the owner and operator of a luxurious island invites a collection of guests to live out their most elaborate fantasies in relative seclusion, chaos quickly descends.",
             "February 14th 2020",
             R.drawable.fantasy_island
         )
     )
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAdapter.MovieViewHolder {
+    //notifies all other objects whenever a View is clicked
+    interface MovieListClickListener{
+        fun movieItemClicked(movie: Movie)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_list,parent,false)
         return MovieViewHolder(view)
     }
@@ -99,16 +105,14 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
         holder.movieImage.setImageResource(movieList[position].image)
         holder.movieName.text = movieList[position].title
-
+        holder.itemView.setOnClickListener {
+            clickListener.movieItemClicked(movieList[position])
+        }
     }
-
-    class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         var movieName = itemView.findViewById (R.id.movie_name) as TextView
-        var movieImage = itemView.findViewById (R.id.movie_image) as ImageView
-
+        var movieImage = itemView.findViewById (R.id.movie_image_card) as ImageView
 
     }
-
-
 }
