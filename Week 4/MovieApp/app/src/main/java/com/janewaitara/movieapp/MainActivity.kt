@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 class MainActivity : AppCompatActivity() ,MovieAdapter.MovieListClickListener{
 
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() ,MovieAdapter.MovieListClickListener{
         setContentView(R.layout.activity_main)
 
         movieRecyclerView = findViewById(R.id.movieRecyclerView)
-        movieRecyclerView.layoutManager = GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false)
+        movieRecyclerView.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
         movieRecyclerView.adapter = MovieAdapter(this)
 
     }
