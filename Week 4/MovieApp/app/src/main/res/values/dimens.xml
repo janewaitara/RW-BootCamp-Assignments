@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="movie_layout_width">170dp</dimen>
+    <dimen name="movie_layout_height">200dp</dimen>
+    <dimen name="card_elevation" >3dp</dimen>
+    <dimen name="header_image_size">200dp</dimen>
+    <dimen name="padding_half">8dp</dimen>
+    <dimen name="padding_standard">16dp</dimen>
+    <dimen name="movie_name_text_size">18sp</dimen>
+    <dimen name="movie_detail_text_size">15sp</dimen>
+</resources>
