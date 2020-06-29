@@ -1,5 +1,6 @@
 package com.janewaitara.movieapp
 
+import android.app.Application
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -13,6 +14,8 @@ import kotlinx.android.synthetic.main.fragment_login.*
 class LoginFragment : Fragment() {
     private var listener: OnFragmentInteractionListener? = null
 
+    //val application = requireNotNull(this.activity).application
+    private lateinit var loginPrefs : MovieSharedPrefs
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,10 +28,14 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //loginPrefs = MovieSharedPrefs(activity)
+        loginPrefs =  MovieSharedPrefs(context!!)
+
         btn_login.setOnClickListener {
             view?.let {
                 if (validateUserName() && validatePassword()){
                     it.findNavController().navigate(R.id.action_loginFragment_to_movieListFragment)
+                    loginPrefs.setLoginStatus(true)
                 }
             }
         }
@@ -80,6 +87,8 @@ class LoginFragment : Fragment() {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
             listener = context
+
+            //loginPrefs =  MovieSharedPrefs(context)
         }
     }
 
