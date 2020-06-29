@@ -2,9 +2,12 @@ package com.janewaitara.movieapp
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "movie_table")
 data class Movie(
-    var id: String,
+    @PrimaryKey var id: String,
     var title: String,
     var summary: String,
     var releaseDate: String,
