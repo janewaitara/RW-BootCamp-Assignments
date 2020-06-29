@@ -27,11 +27,49 @@ class LoginFragment : Fragment() {
 
         btn_login.setOnClickListener {
             view?.let {
-                it.findNavController().navigate(R.id.action_loginFragment_to_movieListFragment)
+                if (validateUserName() && validatePassword()){
+                    it.findNavController().navigate(R.id.action_loginFragment_to_movieListFragment)
+                }
             }
         }
     }
-  
+
+    private fun validatePassword(): Boolean{
+        val loginPassword = login_passwordWrapper.editText!!.text.toString().trim()
+
+        return when {
+            loginPassword.isEmpty() -> {
+                login_passwordWrapper.error = "Password can not be empty"
+                false
+            }
+            loginPassword.length < 6 -> {
+                login_passwordWrapper.error = "Password should be greater than 6"
+                false
+            }
+            else -> {
+                login_passwordWrapper.isErrorEnabled = false
+                true
+            }
+        }
+    }
+    private fun validateUserName(): Boolean{
+        val loginUserName = login_userNameWrapper.editText!!.text.toString().trim()
+
+        return when {
+            loginUserName.isEmpty() -> {
+                login_userNameWrapper.error = "User name can not be empty"
+                false
+            }
+            loginUserName.length < 3 -> {
+                login_userNameWrapper.error = "Enter a valid user name"
+                false
+            }
+            else -> {
+                login_userNameWrapper.isErrorEnabled = false
+                true
+            }
+        }
+    }
 
 
     fun onButtonPressed(uri: Uri) {

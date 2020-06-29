@@ -24,13 +24,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_emailWrapper"
+        android:id="@+id/login_userNameWrapper"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:ems="10"
         app:errorEnabled="true"
         android:layout_height="wrap_content"
-        android:hint="Enter Your email Address"
+        android:hint="Enter Your UserName"
         app:boxBackgroundMode="outline"
         app:endIconMode="clear_text"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.152">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/login_email_textInput_id"
+            android:id="@+id/login_user_Name_textInput_id"
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:textColor="@color/colorPrimaryDark"
@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.318"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_emailWrapper"
+        app:layout_constraintTop_toBottomOf="@+id/login_userNameWrapper"
         app:layout_constraintVertical_bias="0.069">
 
         <com.google.android.material.textfield.TextInputEditText
