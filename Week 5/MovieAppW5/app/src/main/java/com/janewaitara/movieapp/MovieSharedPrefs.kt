@@ -3,10 +3,11 @@ package com.janewaitara.movieapp
 import android.content.Context
 import android.content.SharedPreferences
 
-class MovieSharedPrefs(context: Context) {
+class MovieSharedPrefs {
 
     private val SHARED_PREFS = "SHARED_PREFS"
     val ISLOGGED_IN = "IS_LOGGED_IN "
+    private val context = MovieApplication.getAppContext()
 
     var sharedPreferences = context.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
 

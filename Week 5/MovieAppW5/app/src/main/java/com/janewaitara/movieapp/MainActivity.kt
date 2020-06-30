@@ -9,8 +9,8 @@ import androidx.navigation.Navigation
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var loginPrefs: MovieSharedPrefs
-    lateinit var navController: NavController
+    private lateinit var loginPrefs: MovieSharedPrefs
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         //loading the nav graph
         navController = Navigation.findNavController(this,R.id.nav_host_fragment)
 
-         loginPrefs = MovieSharedPrefs(this)
+        loginPrefs = MovieSharedPrefs()
 
 
         when(loginPrefs.getLoginStatus()){
