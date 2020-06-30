@@ -1,20 +1,15 @@
 package com.janewaitara.movieapp
 
-import android.app.Application
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment() {
-    private var listener: OnFragmentInteractionListener? = null
 
-    //val application = requireNotNull(this.activity).application
     private lateinit var loginPrefs : MovieSharedPrefs
 
     override fun onCreateView(
@@ -28,7 +23,6 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //loginPrefs = MovieSharedPrefs(activity)
         loginPrefs =  MovieSharedPrefs(context!!)
 
         btn_login.setOnClickListener {
@@ -41,16 +35,20 @@ class LoginFragment : Fragment() {
         }
     }
 
+    /**
+     * a fun to validate whether the login password is empty or shorter than expected.
+     * Returns a Boolean
+     * */
     private fun validatePassword(): Boolean{
         val loginPassword = login_passwordWrapper.editText!!.text.toString().trim()
 
         return when {
             loginPassword.isEmpty() -> {
-                login_passwordWrapper.error = "Password can not be empty"
+                login_passwordWrapper.error = getString(R.string.password_empty_error)
                 false
             }
             loginPassword.length < 6 -> {
-                login_passwordWrapper.error = "Password should be greater than 6"
+                login_passwordWrapper.error = getString(R.string.password_length_error)
                 false
             }
             else -> {
@@ -59,16 +57,21 @@ class LoginFragment : Fragment() {
             }
         }
     }
+
+    /**
+     * a fun to validate whether the login userName is empty or shorter than expected.
+     * Returns a Boolean
+     * */
     private fun validateUserName(): Boolean{
         val loginUserName = login_userNameWrapper.editText!!.text.toString().trim()
 
         return when {
             loginUserName.isEmpty() -> {
-                login_userNameWrapper.error = "User name can not be empty"
+                login_userNameWrapper.error = getString(R.string.username_empty_error)
                 false
             }
             loginUserName.length < 3 -> {
-                login_userNameWrapper.error = "Enter a valid user name"
+                login_userNameWrapper.error = getString(R.string.username_length_error)
                 false
             }
             else -> {
@@ -78,35 +81,4 @@ class LoginFragment : Fragment() {
         }
     }
 
-
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-
-            //loginPrefs =  MovieSharedPrefs(context)
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-
-    interface OnFragmentInteractionListener {
-
-        fun onFragmentInteraction(uri: Uri)
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun newInstance() = LoginFragment()
-
-    }
 }

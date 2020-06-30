@@ -8,14 +8,12 @@
     android:background="@color/backgroundColor"
     >
 
-
-
     <TextView
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Movie App"
+        android:text="@string/movie_app"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
@@ -30,7 +28,7 @@
         android:ems="10"
         app:errorEnabled="true"
         android:layout_height="wrap_content"
-        android:hint="Enter Your UserName"
+        android:hint="@string/enter_your_username"
         app:boxBackgroundMode="outline"
         app:endIconMode="clear_text"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +52,7 @@
         android:layout_width="match_parent"
         android:ems="10"
         android:layout_height="wrap_content"
-        android:hint="Enter Your password"
+        android:hint="@string/enter_your_password"
         app:hintTextColor="@android:color/black"
         app:boxBackgroundMode="outline"
         app:passwordToggleEnabled="true"
@@ -80,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_round_corners"
-        android:text="Login"
+        android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_passwordWrapper" />
