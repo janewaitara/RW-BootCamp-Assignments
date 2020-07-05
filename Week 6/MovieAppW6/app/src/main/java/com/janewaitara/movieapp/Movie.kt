@@ -2,14 +2,15 @@ package com.janewaitara.movieapp
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "movie_table")
 data class Movie(
     @PrimaryKey var id: String,
-    var title: String,
-    var summary: String,
+    @ColumnInfo(name = "movie title") var title: String,
+    @ColumnInfo(name = "movie summary") var summary: String,
     var releaseDate: String,
     var image: Int):Parcelable{
     constructor(parcel: Parcel) : this(
