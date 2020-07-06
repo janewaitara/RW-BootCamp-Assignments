@@ -9,7 +9,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.janewaitara.movieapp.MovieListFragmentDirections
 import com.janewaitara.movieapp.storage.MovieSharedPrefs
 import com.janewaitara.movieapp.R
 import com.janewaitara.movieapp.model.Movie

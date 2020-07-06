@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.janewaitara.movieapp.MovieDetailFragmentArgs
+
 import com.janewaitara.movieapp.R
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
 
