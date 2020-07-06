@@ -8,13 +8,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "movie_table")
 data class Movie(
-    @PrimaryKey var id: String,
+    @PrimaryKey var id: Int,
     @ColumnInfo(name = "movie title") var title: String,
     @ColumnInfo(name = "movie summary") var summary: String,
     var releaseDate: String,
     var image: Int):Parcelable{
     constructor(parcel: Parcel) : this(
-        parcel.readString()!!,
+        parcel.readInt(),
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
@@ -22,7 +22,7 @@ data class Movie(
     )
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
-        dest.writeString(id)
+        dest.writeInt(id)
         dest.writeString(title)
         dest.writeString(summary)
         dest.writeString(releaseDate)

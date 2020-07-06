@@ -4,21 +4,30 @@ import androidx.room.*
 
 @Dao
 interface MovieDao{
-
+    /**
+    *Room has coroutines support, allowing your queries to be
+     *annotated with the suspend modifier and then called
+     *from a coroutine or from another suspension function.
+     * */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovie(movie: Movie)
+    suspend fun insertMovie(movie: Movie)
 
-    @Query("SELECT * FROM movie_table ORDER BY releaseDate ASC")
-    fun getMovies(): List<Movie>
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAllMovies(movies: List<Movie>)
+
+    @Query("SELECT * FROM movie_table ORDER BY id ASC")
+    fun getMovie(movieId: Int): Movie
+
+    @Query("SELECT * FROM movie_table ORDER BY id ASC")
+    fun getAllMovies(): List<Movie>
 
     @Delete
-    fun deleteMovie(movie: Movie)
+    suspend fun deleteMovie(movie: Movie)
 
     @Update
     fun updateMovie(movie: Movie)
 
 }
-
 
 @Database(entities = [Movie::class],version = 1)
 abstract class MovieDatabase: RoomDatabase(){
