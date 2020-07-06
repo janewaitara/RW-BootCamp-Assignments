@@ -39,7 +39,17 @@ class MovieViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun insertMovies(movieList: List<Movie>){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addAllMovies(movieList)
+        }
+    }
 
+    fun getMovie(id: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getMovie(id)
+        }
+    }
 
 
 }

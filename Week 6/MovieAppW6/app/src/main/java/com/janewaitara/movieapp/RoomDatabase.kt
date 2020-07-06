@@ -17,7 +17,7 @@ interface MovieDao{
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAllMovies(movies: List<Movie>)
 
-    @Query("SELECT * FROM movie_table ORDER BY id ASC")
+    @Query("SELECT * FROM movie_table where id = :movieId")
     fun getMovie(movieId: Int): LiveData<Movie>
 
     @Query("SELECT * FROM movie_table ORDER BY id ASC")
