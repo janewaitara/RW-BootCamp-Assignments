@@ -3,6 +3,7 @@ package com.janewaitara.movieapp
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
+import com.janewaitara.movieapp.db.MovieDatabase
 
 class MovieApplication:Application() {
     companion object{
@@ -18,6 +19,7 @@ class MovieApplication:Application() {
         instance = this
         super.onCreate()
 
-        database = Room.databaseBuilder(this,MovieDatabase::class.java,"movie_database").build()
+        database = Room.databaseBuilder(this,
+            MovieDatabase::class.java,"movie_database").build()
     }
 }

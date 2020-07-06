@@ -1,6 +1,9 @@
-package com.janewaitara.movieapp
+package com.janewaitara.movieapp.repository
 
 import androidx.lifecycle.LiveData
+import com.janewaitara.movieapp.db.MovieDao
+import com.janewaitara.movieapp.db.MovieDatabase
+import com.janewaitara.movieapp.model.Movie
 
 class RoomRepository {
     /**

@@ -1,4 +1,4 @@
-package com.janewaitara.movieapp
+package com.janewaitara.movieapp.ui.movies
 
 
 import android.os.Bundle
@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.janewaitara.movieapp.MovieDetailFragmentArgs
+import com.janewaitara.movieapp.R
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
 
 class MovieDetailFragment : Fragment() {
@@ -22,7 +24,10 @@ class MovieDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
             //getting the passed in args
-            val args = MovieDetailFragmentArgs.fromBundle(it)
+            val args =
+                MovieDetailFragmentArgs.fromBundle(
+                    it
+                )
             movie_title.text = args.movie.title
             movie_image.setImageResource(args.movie.image)
             movie_summary.text = args.movie.summary

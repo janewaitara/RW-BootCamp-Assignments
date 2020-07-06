@@ -1,12 +1,13 @@
-package com.janewaitara.movieapp
+package com.janewaitara.movieapp.db
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.janewaitara.movieapp.model.Movie
+import com.janewaitara.movieapp.MovieApplication
+import com.janewaitara.movieapp.ui.movies.MovieViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
@@ -48,7 +49,8 @@ abstract class MovieDatabase: RoomDatabase(){
          *  database opening at the same time.*/
         @Volatile
         private var INSTANCE: MovieDatabase? = null
-        val context = MovieApplication.getAppContext()
+        val context =
+            MovieApplication.getAppContext()
 
         /**
          * This function returns the singleton. It'll create the database the
@@ -60,12 +62,17 @@ abstract class MovieDatabase: RoomDatabase(){
         fun getDatabase(): MovieDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
-            return INSTANCE ?: synchronized(this) {
+            return INSTANCE
+                ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context,
                     MovieDatabase::class.java,
                     "movie_database"
-                ).addCallback(MovieDatabaseCallback(CoroutineScope(Dispatchers.IO))).build()
+                ).addCallback(
+                    MovieDatabaseCallback(
+                        CoroutineScope(Dispatchers.IO)
+                    )
+                ).build()
                 INSTANCE = instance
                 // return instance
                 instance
@@ -77,7 +84,8 @@ abstract class MovieDatabase: RoomDatabase(){
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             scope.launch {
-                var movieDao = getDatabase().movieDao()
+                var movieDao = getDatabase()
+                    .movieDao()
                 //populating
                 movieDao.insertAllMovies(MovieViewModel.movieList)
             }

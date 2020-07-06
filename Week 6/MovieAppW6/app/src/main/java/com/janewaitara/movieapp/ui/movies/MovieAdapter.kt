@@ -1,4 +1,4 @@
-package com.janewaitara.movieapp
+package com.janewaitara.movieapp.ui.movies
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.janewaitara.movieapp.R
+import com.janewaitara.movieapp.model.Movie
 
 class MovieAdapter(val clickListener: MovieListClickListener) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
@@ -18,7 +20,9 @@ class MovieAdapter(val clickListener: MovieListClickListener) : RecyclerView.Ada
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_list,parent,false)
-        return MovieViewHolder(view)
+        return MovieViewHolder(
+            view
+        )
     }
 
     override fun getItemCount() = movieList.size

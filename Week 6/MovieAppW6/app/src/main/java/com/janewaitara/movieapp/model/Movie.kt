@@ -1,4 +1,4 @@
-package com.janewaitara.movieapp
+package com.janewaitara.movieapp.model
 
 import android.os.Parcel
 import android.os.Parcelable

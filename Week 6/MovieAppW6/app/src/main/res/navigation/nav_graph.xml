@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/movieListFragment"
-        android:name="com.janewaitara.movieapp.MovieListFragment"
+        android:name="com.janewaitara.movieapp.ui.movies.MovieListFragment"
         android:label="fragment_movie_list"
         tools:layout="@layout/fragment_movie_list" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="com.janewaitara.movieapp.MovieDetailFragment"
+        android:name="com.janewaitara.movieapp.ui.movies.MovieDetailFragment"
         android:label="MovieDetailFragment" >
         <argument
             android:name="movie"
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.janewaitara.movieapp.LoginFragment"
+        android:name="com.janewaitara.movieapp.ui.login.LoginFragment"
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_movieListFragment"

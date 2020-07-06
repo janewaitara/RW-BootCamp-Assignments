@@ -1,9 +1,12 @@
-package com.janewaitara.movieapp
+package com.janewaitara.movieapp.ui.movies
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.janewaitara.movieapp.R
+import com.janewaitara.movieapp.model.Movie
+import com.janewaitara.movieapp.repository.RoomRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -18,13 +21,15 @@ class MovieViewModel(application: Application): AndroidViewModel(application) {
                 "January 3rd 2020",
                 R.drawable.thegrudge
             ),
-            Movie(100,
+            Movie(
+                100,
                 "The Call of the Wild ",
                 "A sled dog struggles for survival in the wilds of the Yukon.",
                 "February 21st 2020",
                 R.drawable.thecallofwind
 
-            ), Movie(97,
+            ), Movie(
+                97,
                 "A Quiet Place Part II ",
                 "Following the events at home, the Abbott family now face the terrors of the outside world. " +
                         "Forced to venture into the unknown, they realize the creatures that hunt by sound are not the only threats lurking beyond the sand path.",
@@ -121,7 +126,7 @@ class MovieViewModel(application: Application): AndroidViewModel(application) {
     val allMovies: LiveData<List<Movie>>
 
     init {
-        repository =  RoomRepository()
+        repository = RoomRepository()
         allMovies = repository.getAllMovies()
     }
 

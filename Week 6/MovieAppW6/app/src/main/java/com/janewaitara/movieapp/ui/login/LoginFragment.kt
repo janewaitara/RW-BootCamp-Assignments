@@ -1,4 +1,4 @@
-package com.janewaitara.movieapp
+package com.janewaitara.movieapp.ui.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import com.janewaitara.movieapp.storage.MovieSharedPrefs
+import com.janewaitara.movieapp.R
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.coroutines.launch
 
@@ -25,7 +27,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loginPrefs =  MovieSharedPrefs()
+        loginPrefs = MovieSharedPrefs()
 
         btn_login.setOnClickListener {
             lifecycleScope.launch {
