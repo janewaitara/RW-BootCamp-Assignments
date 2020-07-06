@@ -1,5 +1,6 @@
 package com.janewaitara.movieapp
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -16,10 +17,10 @@ interface MovieDao{
     suspend fun insertAllMovies(movies: List<Movie>)
 
     @Query("SELECT * FROM movie_table ORDER BY id ASC")
-    fun getMovie(movieId: Int): Movie
+    fun getMovie(movieId: Int): LiveData<Movie>
 
     @Query("SELECT * FROM movie_table ORDER BY id ASC")
-    fun getAllMovies(): List<Movie>
+    fun getAllMovies(): LiveData<List<Movie>>
 
     @Delete
     suspend fun deleteMovie(movie: Movie)
