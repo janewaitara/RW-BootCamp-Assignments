@@ -1,16 +1,35 @@
 package com.janewaitara.movieapp
 
+import androidx.lifecycle.LiveData
+
 class RoomRepository {
+    /**
+     * The DAO is initialized  as opposed to the whole database.
+     * This is because it only needs access to the DAO,
+     * since the DAO contains all the read/write methods for the database.
+     * There's no need to expose the entire database to the repository.*/
 
-    private val movieDao: MovieDao = MovieApplication.database.movieDao()
+    private val movieDao: MovieDao = MovieDatabase.getDatabase().movieDao()
 
-    fun addMovie(movie: Movie) = movieDao.insertMovie(movie)
+    /**
+     * The suspend modifier tells the compiler that this needs to be
+     * called from a coroutine or another suspending function.
+     */
+    suspend fun addMovie(movie: Movie) = movieDao.insertMovie(movie)
 
-    fun getAllMovies(): List<Movie> = movieDao.getMovies()
+    suspend fun addAllMovies(movieList: List<Movie>) = movieDao.insertAllMovies(movieList)
+
+    /**
+     * Room executes all queries on a separate thread.
+     * Observed LiveData will notify the observer when the data has changed.
+     */
+    fun getAllMovies(): LiveData<List<Movie>> = movieDao.getAllMovies()
+
+    fun getMovie(id: Int): LiveData<Movie> = movieDao.getMovie(id)
 
     fun updateMovie(movie: Movie) = movieDao.updateMovie(movie)
 
-    fun deleteMovie(movie: Movie) = movieDao.deleteMovie(movie)
+    suspend fun deleteMovie(movie: Movie) = movieDao.deleteMovie(movie)
 
 
 }

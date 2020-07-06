@@ -42,6 +42,7 @@ abstract class MovieDatabase: RoomDatabase(){
          *  database opening at the same time.*/
         @Volatile
         private var INSTANCE: MovieDatabase? = null
+        val context = MovieApplication.getAppContext()
 
         /**
          * This function returns the singleton. It'll create the database the
@@ -50,14 +51,14 @@ abstract class MovieDatabase: RoomDatabase(){
          *  application context from the WordRoomDatabase class
          *  and names it "movie_database".
          * */
-        fun getDatabase(context: Context): MovieDatabase {
+        fun getDatabase(): MovieDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
             }
             synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
+                    context,
                     MovieDatabase::class.java,
                     "movie_database"
                 ).build()
