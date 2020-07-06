@@ -1,13 +1,12 @@
 package com.janewaitara.movieapp
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -18,6 +17,10 @@ class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
     private lateinit var movieRecyclerView: RecyclerView
 
     private lateinit var movieViewModel: MovieViewModel
+
+    private lateinit var loginPrefs: MovieSharedPrefs
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +44,7 @@ class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
                 movies?.let { adapter.setMovies(it) }
             })
         }
+        loginPrefs = MovieSharedPrefs()
     }
 
     override fun movieItemClicked(movie: Movie) {
@@ -53,5 +57,29 @@ class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
             it.findNavController().navigate(action)
         }
 
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.logout_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+
+        when(item.itemId){
+            R.id.log_out -> {
+                loginPrefs.setLoginStatus(false)
+                view?.let {
+                    it.findNavController().navigate(R.id.action_movieListFragment_to_loginFragment)
+                }
+            }
+        }
+        return true
     }
 }

@@ -28,22 +28,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.logout_menu,menu)
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        super.onOptionsItemSelected(item)
-
-        when(item.itemId){
-            R.id.log_out -> {
-                loginPrefs.setLoginStatus(false)
-                navController.navigate(R.id.loginFragment)
-            }
-        }
-        return true
-    }
 
 }
