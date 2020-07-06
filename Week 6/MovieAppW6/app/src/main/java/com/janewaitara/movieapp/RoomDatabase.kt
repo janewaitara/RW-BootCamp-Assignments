@@ -1,5 +1,6 @@
 package com.janewaitara.movieapp
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
@@ -30,8 +31,40 @@ interface MovieDao{
 
 }
 
-@Database(entities = [Movie::class],version = 1)
+@Database(entities = [Movie::class],version = 1, exportSchema = false)
 abstract class MovieDatabase: RoomDatabase(){
 
     abstract fun movieDao(): MovieDao
+
+    companion object{
+
+        /**Singleton prevents multiple instances of
+         *  database opening at the same time.*/
+        @Volatile
+        private var INSTANCE: MovieDatabase? = null
+
+        /**
+         * This function returns the singleton. It'll create the database the
+         *  first time it's accessed, using Room's database
+         *  builder to create a RoomDatabase object in the
+         *  application context from the WordRoomDatabase class
+         *  and names it "movie_database".
+         * */
+        fun getDatabase(context: Context): MovieDatabase {
+            val tempInstance = INSTANCE
+            if (tempInstance != null) {
+                return tempInstance
+            }
+            synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    MovieDatabase::class.java,
+                    "movie_database"
+                ).build()
+                INSTANCE = instance
+                return instance
+            }
+        }
+
+    }
 }
