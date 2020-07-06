@@ -3,6 +3,10 @@ package com.janewaitara.movieapp
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @Dao
 interface MovieDao{
@@ -52,20 +56,31 @@ abstract class MovieDatabase: RoomDatabase(){
          *  and names it "movie_database".
          * */
         fun getDatabase(): MovieDatabase {
-            val tempInstance = INSTANCE
-            if (tempInstance != null) {
-                return tempInstance
-            }
-            synchronized(this) {
+            // if the INSTANCE is not null, then return it,
+            // if it is, then create the database
+            return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context,
                     MovieDatabase::class.java,
                     "movie_database"
-                ).build()
+                ).addCallback(MovieDatabaseCallback(GlobalScope)).build()
                 INSTANCE = instance
-                return instance
+                // return instance
+                instance
+            }
+        }
+    }
+    private class MovieDatabaseCallback(private val scope: CoroutineScope)
+        : RoomDatabase.Callback(){
+        override fun onCreate(db: SupportSQLiteDatabase) {
+            super.onCreate(db)
+            scope.launch {
+                var movieDao = getDatabase().movieDao()
+                //populating
+                movieDao.insertAllMovies(MovieViewModel.movieList)
             }
         }
 
     }
+
 }
