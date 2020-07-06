@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import kotlinx.coroutines.launch
 
 class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
 
@@ -33,10 +35,12 @@ class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
         movieRecyclerView.adapter = adapter
 
         movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
-        movieViewModel.allMovies.observe(viewLifecycleOwner, Observer{ movies ->
-            movies?.let { adapter.setMovies(it) }
-        })
 
+        lifecycleScope.launch{
+            movieViewModel.allMovies.observe(viewLifecycleOwner, Observer{ movies ->
+                movies?.let { adapter.setMovies(it) }
+            })
+        }
     }
 
     override fun movieItemClicked(movie: Movie) {

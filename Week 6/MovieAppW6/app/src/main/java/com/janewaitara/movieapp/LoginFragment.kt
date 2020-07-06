@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
@@ -26,10 +28,12 @@ class LoginFragment : Fragment() {
         loginPrefs =  MovieSharedPrefs()
 
         btn_login.setOnClickListener {
-            view?.let {
-                if (validateUserName() && validatePassword()){
-                    it.findNavController().navigate(R.id.action_loginFragment_to_movieListFragment)
-                    loginPrefs.setLoginStatus(true)
+            lifecycleScope.launch {
+                view?.let {
+                    if (validateUserName() && validatePassword()){
+                        it.findNavController().navigate(R.id.action_loginFragment_to_movieListFragment)
+                        loginPrefs.setLoginStatus(true)
+                    }
                 }
             }
         }

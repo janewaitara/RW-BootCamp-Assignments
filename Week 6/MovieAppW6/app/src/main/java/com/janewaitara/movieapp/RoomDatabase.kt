@@ -5,8 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+
 
 @Dao
 interface MovieDao{
@@ -63,7 +65,7 @@ abstract class MovieDatabase: RoomDatabase(){
                     context,
                     MovieDatabase::class.java,
                     "movie_database"
-                ).addCallback(MovieDatabaseCallback(GlobalScope)).build()
+                ).addCallback(MovieDatabaseCallback(CoroutineScope(Dispatchers.IO))).build()
                 INSTANCE = instance
                 // return instance
                 instance
