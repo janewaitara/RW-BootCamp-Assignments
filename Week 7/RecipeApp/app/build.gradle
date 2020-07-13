@@ -8,6 +8,8 @@ apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'kotlinx-serialization'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -24,6 +26,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    //let retrofit and clients use more advanced features of java from newer versions
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     packagingOptions {
@@ -76,4 +84,15 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
 
+    //retrofit library
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+
+    //retrofit converter which works with kotlin serialization
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.4.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.4.0'
+
+    //logging interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
+
+   
 }
