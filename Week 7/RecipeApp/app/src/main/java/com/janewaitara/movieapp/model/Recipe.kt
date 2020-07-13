@@ -1,5 +1,8 @@
 package com.janewaitara.movieapp.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 class Recipe(
     val id : Int,
     val title: String,
@@ -10,4 +13,5 @@ class Recipe(
     val extendedIngredients: Array<Ingredients>
 )
 
+@Serializable
 class Ingredients ( val originalString: String)
