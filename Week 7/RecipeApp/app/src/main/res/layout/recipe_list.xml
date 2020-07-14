@@ -14,16 +14,16 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/movie_image_card"
+            android:id="@+id/recipe_image_card"
             android:layout_width="match_parent"
             android:layout_height="@dimen/movie_layout_height"
             android:layout_gravity="center"
             android:scaleType="fitXY"
-            android:contentDescription="@string/content_description_movie_image"
+            android:contentDescription="@string/content_description_recipe_image"
             app:srcCompat="@drawable/under_water" />
 
         <TextView
-            android:id="@+id/movie_name"
+            android:id="@+id/recipe_name"
             android:padding="@dimen/padding_half"
             android:layout_width="match_parent"
             android:layout_gravity="center_vertical"

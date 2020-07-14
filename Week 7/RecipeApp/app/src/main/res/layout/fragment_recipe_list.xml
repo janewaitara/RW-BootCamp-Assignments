@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.movies.MovieListFragment">
+    tools:context=".ui.recipes.RecipeListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/movieRecyclerView"
+        android:id="@+id/recipeRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

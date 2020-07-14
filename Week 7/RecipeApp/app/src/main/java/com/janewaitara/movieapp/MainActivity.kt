@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.janewaitara.movieapp.storage.MovieSharedPrefs
+import com.janewaitara.movieapp.storage.RecipeSharedPrefs
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var loginPrefs: MovieSharedPrefs
+    private lateinit var loginPrefs: RecipeSharedPrefs
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,12 +18,12 @@ class MainActivity : AppCompatActivity() {
         //loading the nav graph
         navController = Navigation.findNavController(this,R.id.nav_host_fragment)
 
-        loginPrefs = MovieSharedPrefs()
+        loginPrefs = RecipeSharedPrefs()
 
 
         when(loginPrefs.getLoginStatus()){
             false -> navController.navigate(R.id.loginFragment)
-            true -> navController.navigate(R.id.movieListFragment)
+            true -> navController.navigate(R.id.recipeListFragment)
         }
     }
 

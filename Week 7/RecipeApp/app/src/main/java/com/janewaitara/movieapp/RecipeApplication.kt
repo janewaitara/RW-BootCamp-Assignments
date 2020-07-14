@@ -3,16 +3,16 @@ package com.janewaitara.movieapp
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import com.janewaitara.movieapp.db.MovieDatabase
+import com.janewaitara.movieapp.db.RecipeDatabase
 import com.janewaitara.movieapp.networking.RemoteApi
 import com.janewaitara.movieapp.networking.buildApiService
 
-class MovieApplication:Application() {
+class RecipeApplication:Application() {
     companion object{
 
-        private lateinit var instance : MovieApplication
+        private lateinit var instance : RecipeApplication
 
-        lateinit var database: MovieDatabase
+        lateinit var database: RecipeDatabase
 
         fun getAppContext(): Context = instance.applicationContext
 
@@ -26,6 +26,6 @@ class MovieApplication:Application() {
         super.onCreate()
 
         database = Room.databaseBuilder(this,
-            MovieDatabase::class.java,"movie_database").build()
+            RecipeDatabase::class.java,"movie_database").build()
     }
 }

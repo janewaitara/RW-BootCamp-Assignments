@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
-import com.janewaitara.movieapp.storage.MovieSharedPrefs
+import com.janewaitara.movieapp.storage.RecipeSharedPrefs
 import com.janewaitara.movieapp.R
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
-    private lateinit var loginPrefs : MovieSharedPrefs
+    private lateinit var loginPrefs : RecipeSharedPrefs
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +27,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loginPrefs = MovieSharedPrefs()
+        loginPrefs = RecipeSharedPrefs()
 
         btn_login.setOnClickListener {
             lifecycleScope.launch {

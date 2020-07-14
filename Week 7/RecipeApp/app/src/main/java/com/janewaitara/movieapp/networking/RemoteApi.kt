@@ -10,7 +10,7 @@ class RemoteApi (private val remoteApiService: RemoteApiService){
     private val apiKey = BuildConfig.API_KEY
     private val numberOfRecipes = 10
 
-    suspend fun getRecipes(): Result<List<Recipe>> = try {
+    suspend fun getRecipes(): Result<List<Recipes>> = try {
 
         val data = remoteApiService.getRecipes(apiKey, numberOfRecipes)
 

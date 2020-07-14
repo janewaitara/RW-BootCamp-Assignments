@@ -1,4 +1,4 @@
-package com.janewaitara.movieapp.ui.movies
+package com.janewaitara.movieapp.ui.recipes
 
 import android.os.Bundle
 import android.view.*
@@ -9,18 +9,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.janewaitara.movieapp.storage.MovieSharedPrefs
+import com.janewaitara.movieapp.storage.RecipeSharedPrefs
 import com.janewaitara.movieapp.R
-import com.janewaitara.movieapp.model.Movie
+import com.janewaitara.movieapp.model.Recipe
 import kotlinx.coroutines.launch
 
-class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
+class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
 
-    private lateinit var movieRecyclerView: RecyclerView
+    private lateinit var recipeRecyclerView: RecyclerView
 
-    private lateinit var movieViewModel: MovieViewModel
+    private lateinit var recipeViewModel: RecipeViewModel
 
-    private lateinit var loginPrefs: MovieSharedPrefs
+    private lateinit var loginPrefs: RecipeSharedPrefs
 
 
 
@@ -29,36 +29,34 @@ class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_list, container, false)
+        return inflater.inflate(R.layout.fragment_recipe_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        movieRecyclerView = view.findViewById(R.id.movieRecyclerView)
-        movieRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        val adapter = MovieAdapter(this)
-        movieRecyclerView.adapter = adapter
+        recipeRecyclerView = view.findViewById(R.id.recipeRecyclerView)
+        recipeRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        val adapter = RecipeAdapter(this)
+        recipeRecyclerView.adapter = adapter
 
-        movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
+        recipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
 
         lifecycleScope.launch{
-            movieViewModel.allMovies.observe(viewLifecycleOwner, Observer{ movies ->
-                movies?.let { adapter.setMovies(it) }
+            recipeViewModel.allRecipes.observe(viewLifecycleOwner, Observer{ recipes ->
+                recipes?.let { adapter.setRecipes(it) }
             })
         }
-        loginPrefs = MovieSharedPrefs()
+        loginPrefs = RecipeSharedPrefs()
     }
 
-    override fun movieItemClicked(movie: Movie) {
-      showDetailsActivity(movie)
+    override fun recipeItemClicked(recipe: Recipe) {
+      showDetailsActivity(recipe)
     }
 
-    private fun showDetailsActivity(movie: Movie){
+    private fun showDetailsActivity(recipe: Recipe){
         view?.let {
-            val action =
-                MovieListFragmentDirections.actionMovieListFragmentToMovieDetailFragment(
-                    movie
-                ) //trigger the navigation and passing data
+            val action = RecipeListFragmentDirections.actionRecipeListFragmentToRecipeDetailFragment(recipe)
+                //trigger the navigation and passing data
             it.findNavController().navigate(action)
         }
 
@@ -81,7 +79,7 @@ class MovieListFragment : Fragment(), MovieAdapter.MovieListClickListener {
             R.id.log_out -> {
                 loginPrefs.setLoginStatus(false)
                 view?.let {
-                    it.findNavController().navigate(R.id.action_movieListFragment_to_loginFragment)
+                    it.findNavController().navigate(R.id.action_recipeListFragment_to_loginFragment)
                 }
             }
         }

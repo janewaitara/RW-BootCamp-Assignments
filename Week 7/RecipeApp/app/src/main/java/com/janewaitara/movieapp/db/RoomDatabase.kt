@@ -3,54 +3,56 @@ package com.janewaitara.movieapp.db
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.janewaitara.movieapp.model.Movie
-import com.janewaitara.movieapp.MovieApplication
-import com.janewaitara.movieapp.ui.movies.MovieViewModel
+import com.janewaitara.movieapp.model.Recipe
+import com.janewaitara.movieapp.RecipeApplication
+import com.janewaitara.movieapp.model.IngredientsConverter
+import com.janewaitara.movieapp.ui.recipes.RecipeViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
 @Dao
-interface MovieDao{
+interface RecipeDao{
     /**
     *Room has coroutines support, allowing your queries to be
      *annotated with the suspend modifier and then called
      *from a coroutine or from another suspension function.
      * */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMovie(movie: Movie)
+    suspend fun insertRecipe(recipe: Recipe)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertAllMovies(movies: List<Movie>)
+    suspend fun insertAllRecipes(recipes: List<Recipe>)
 
-    @Query("SELECT * FROM movie_table where id = :movieId")
-    fun getMovie(movieId: Int): LiveData<Movie>
+    @Query("SELECT * FROM recipe_table where id = :movieId")
+    fun getRecipe(movieId: Int): LiveData<Recipe>
 
-    @Query("SELECT * FROM movie_table ORDER BY id ASC")
-    fun getAllMovies(): LiveData<List<Movie>>
+    @Query("SELECT * FROM recipe_table ORDER BY id ASC")
+    fun getAllRecipes(): LiveData<List<Recipe>>
 
     @Delete
-    suspend fun deleteMovie(movie: Movie)
+    suspend fun deleteRecipe(recipe: Recipe)
 
     @Update
-    fun updateMovie(movie: Movie)
+    fun updateRecipe(recipe: Recipe)
 
 }
 
-@Database(entities = [Movie::class],version = 1, exportSchema = false)
-abstract class MovieDatabase: RoomDatabase(){
+@Database(entities = [Recipe::class],version = 1, exportSchema = false)
+@TypeConverters(IngredientsConverter::class)
+abstract class RecipeDatabase: RoomDatabase(){
 
-    abstract fun movieDao(): MovieDao
+    abstract fun recipeDao(): RecipeDao
 
     companion object{
 
         /**Singleton prevents multiple instances of
          *  database opening at the same time.*/
         @Volatile
-        private var INSTANCE: MovieDatabase? = null
+        private var INSTANCE: RecipeDatabase? = null
         val context =
-            MovieApplication.getAppContext()
+            RecipeApplication.getAppContext()
 
         /**
          * This function returns the singleton. It'll create the database the
@@ -59,17 +61,17 @@ abstract class MovieDatabase: RoomDatabase(){
          *  application context from the WordRoomDatabase class
          *  and names it "movie_database".
          * */
-        fun getDatabase(): MovieDatabase {
+        fun getDatabase(): RecipeDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE
                 ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context,
-                    MovieDatabase::class.java,
+                    RecipeDatabase::class.java,
                     "movie_database"
                 ).addCallback(
-                    MovieDatabaseCallback(
+                    RecipeDatabaseCallback(
                         CoroutineScope(Dispatchers.IO)
                     )
                 ).build()
@@ -79,15 +81,15 @@ abstract class MovieDatabase: RoomDatabase(){
             }
         }
     }
-    private class MovieDatabaseCallback(private val scope: CoroutineScope)
+    private class RecipeDatabaseCallback(private val scope: CoroutineScope)
         : RoomDatabase.Callback(){
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             scope.launch {
-                var movieDao = getDatabase()
-                    .movieDao()
+                var recipeDao = getDatabase()
+                    .recipeDao()
                 //populating
-                movieDao.insertAllMovies(MovieViewModel.movieList)
+                recipeDao.insertAllRecipes(RecipeViewModel.recipeList)
             }
         }
 

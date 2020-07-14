@@ -1,9 +1,9 @@
 package com.janewaitara.movieapp.repository
 
 import androidx.lifecycle.LiveData
-import com.janewaitara.movieapp.db.MovieDao
-import com.janewaitara.movieapp.db.MovieDatabase
-import com.janewaitara.movieapp.model.Movie
+import com.janewaitara.movieapp.db.RecipeDao
+import com.janewaitara.movieapp.db.RecipeDatabase
+import com.janewaitara.movieapp.model.Recipe
 
 class RoomRepository {
     /**
@@ -12,27 +12,27 @@ class RoomRepository {
      * since the DAO contains all the read/write methods for the database.
      * There's no need to expose the entire database to the repository.*/
 
-    private val movieDao: MovieDao = MovieDatabase.getDatabase().movieDao()
+    private val recipeDao: RecipeDao = RecipeDatabase.getDatabase().recipeDao()
 
     /**
      * The suspend modifier tells the compiler that this needs to be
      * called from a coroutine or another suspending function.
      */
-    suspend fun addMovie(movie: Movie) = movieDao.insertMovie(movie)
+    suspend fun addRecipe(recipe: Recipe) = recipeDao.insertRecipe(recipe)
 
-    suspend fun addAllMovies(movieList: List<Movie>) = movieDao.insertAllMovies(movieList)
+    suspend fun addAllRecipes(recipeList: List<Recipe>) = recipeDao.insertAllRecipes(recipeList)
 
     /**
      * Room executes all queries on a separate thread.
      * Observed LiveData will notify the observer when the data has changed.
      */
-    fun getAllMovies(): LiveData<List<Movie>> = movieDao.getAllMovies()
+    fun getAllRecipes(): LiveData<List<Recipe>> = recipeDao.getAllRecipes()
 
-    fun getMovie(id: Int): LiveData<Movie> = movieDao.getMovie(id)
+    fun getRecipe(id: Int): LiveData<Recipe> = recipeDao.getRecipe(id)
 
-    fun updateMovie(movie: Movie) = movieDao.updateMovie(movie)
+    fun updateRecipe(recipe: Recipe) = recipeDao.updateRecipe(recipe)
 
-    suspend fun deleteMovie(movie: Movie) = movieDao.deleteMovie(movie)
+    suspend fun deleteRecipe(recipe: Recipe) = recipeDao.deleteRecipe(recipe)
 
 
 }
