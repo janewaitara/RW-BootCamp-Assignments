@@ -5,14 +5,16 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity(tableName = "recipe_table")
 data class Recipe(
-    @PrimaryKey var id: Int,
-    @ColumnInfo(name = "recipe title") var title: String,
-    @ColumnInfo(name = "recipe summary") var summary: String,
-    var readyInMins: Int,
-    var image: Int,
+    @PrimaryKey val id: Int,
+    @ColumnInfo(name = "recipe title") val title: String,
+    @ColumnInfo(name = "recipe summary") val summary: String,
+    val readyInMinutes: Int,
+    val image: String,
     val instructions: String,
     val extendedIngredients: List<Ingredient>
 
@@ -22,18 +24,17 @@ data class Recipe(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readInt(),
-        parcel.readInt(),
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.createTypedArrayList(Ingredient)!!
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
         parcel.writeString(title)
         parcel.writeString(summary)
-        parcel.writeInt(readyInMins)
-        parcel.writeInt(image)
+        parcel.writeInt(readyInMinutes)
+        parcel.writeString(image)
         parcel.writeString(instructions)
         parcel.writeTypedList(extendedIngredients)
     }

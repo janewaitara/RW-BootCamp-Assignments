@@ -19,7 +19,8 @@ fun buildRetrofit(): Retrofit {
     val contentType = "application/json".toMediaType()
     return Retrofit.Builder()
         .client(buildClient())
-        .addConverterFactory(Json.nonstrict.asConverterFactory(contentType)) // automatically parses the json and gives it the type that you need and nonstrict gives a more forgiving parser
+        .addConverterFactory(Json.nonstrict
+            .asConverterFactory(contentType)) // automatically parses the json and gives it the type that you need and nonstrict gives a more forgiving parser
         .baseUrl(BASE_URL)
         .build()
 }

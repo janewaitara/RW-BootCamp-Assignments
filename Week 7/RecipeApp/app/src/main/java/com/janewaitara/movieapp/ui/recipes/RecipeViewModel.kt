@@ -1,12 +1,17 @@
 package com.janewaitara.movieapp.ui.recipes
 
 import android.app.Application
+import android.net.ConnectivityManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.janewaitara.movieapp.R
+import com.janewaitara.movieapp.RecipeApplication
 import com.janewaitara.movieapp.model.Ingredient
 import com.janewaitara.movieapp.model.Recipe
+import com.janewaitara.movieapp.model.Success
+import com.janewaitara.movieapp.networking.NetworkStatusChecker
 import com.janewaitara.movieapp.repository.RoomRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,7 +19,7 @@ import kotlinx.coroutines.launch
 class RecipeViewModel(application: Application): AndroidViewModel(application) {
 
     companion object{
-        var recipeList = mutableListOf(
+        /*var recipeList = mutableListOf(
             Recipe(
                 94,
                 "The Grudge",
@@ -163,8 +168,13 @@ class RecipeViewModel(application: Application): AndroidViewModel(application) {
                     Ingredient("Pork"),
                     Ingredient("Pork") )
             )
-        )
+        )*/
+
+        var recipeList = mutableListOf<Recipe>()
+
     }
+
+
 
     private val repository: RoomRepository
 
@@ -180,31 +190,16 @@ class RecipeViewModel(application: Application): AndroidViewModel(application) {
     init {
         repository = RoomRepository()
         allRecipes = repository.getAllRecipes()
+
     }
 
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
      */
-    fun insert(recipe: Recipe) = viewModelScope.launch(Dispatchers.IO)
-    {
-        repository.addRecipe(recipe)
-    }
 
-    fun deleteRecipe(recipe: Recipe){
-        viewModelScope.launch {
-            repository.deleteRecipe(recipe)
-        }
-    }
-
-    fun insertRecipes(recipeList: List<Recipe>){
+    fun insertRecipes(){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addAllRecipes(recipeList)
-        }
-    }
-
-    fun getRecipe(id: Int){
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.getRecipe(id)
+            repository.addAllRecipes()
         }
     }
 

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.janewaitara.movieapp.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_recipe_detail.*
 
 class RecipeDetailFragment : Fragment() {
@@ -29,9 +30,9 @@ class RecipeDetailFragment : Fragment() {
                     it
                 )
             recipe_title.text = args.recipe.title
-            recipe_image.setImageResource(args.recipe.image)
+            Picasso.get().load(args.recipe.image).into(recipe_image)
             recipe_summary.text = args.recipe.summary
-            recipe_duration.text = args.recipe.readyInMins.toString()
+            recipe_duration.text = args.recipe.readyInMinutes.toString()
             recipe_instructions.text = args.recipe.instructions
             val sb = StringBuilder()
             var count = 1

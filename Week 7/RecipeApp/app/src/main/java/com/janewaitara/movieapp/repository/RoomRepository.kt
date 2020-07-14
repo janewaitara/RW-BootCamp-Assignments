@@ -1,9 +1,17 @@
 package com.janewaitara.movieapp.repository
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
+import com.janewaitara.movieapp.RecipeApplication
 import com.janewaitara.movieapp.db.RecipeDao
 import com.janewaitara.movieapp.db.RecipeDatabase
 import com.janewaitara.movieapp.model.Recipe
+import com.janewaitara.movieapp.model.Success
+import com.janewaitara.movieapp.ui.recipes.RecipeViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class RoomRepository {
     /**
@@ -13,14 +21,23 @@ class RoomRepository {
      * There's no need to expose the entire database to the repository.*/
 
     private val recipeDao: RecipeDao = RecipeDatabase.getDatabase().recipeDao()
+    private val remoteApi = RecipeApplication.remoteApi
 
     /**
      * The suspend modifier tells the compiler that this needs to be
      * called from a coroutine or another suspending function.
      */
-    suspend fun addRecipe(recipe: Recipe) = recipeDao.insertRecipe(recipe)
+    suspend fun addAllRecipes() =
+        CoroutineScope(Dispatchers.Main).launch {
+            val result = remoteApi.getRecipes()
 
-    suspend fun addAllRecipes(recipeList: List<Recipe>) = recipeDao.insertAllRecipes(recipeList)
+            if (result is Success){
+                recipeDao.insertAllRecipes(result.data)
+            }else{
+                Toast.makeText(RecipeApplication.getAppContext(), "Failed to fetch tasks!", Toast.LENGTH_SHORT).show()
+            }
+
+        }
 
     /**
      * Room executes all queries on a separate thread.
@@ -28,11 +45,7 @@ class RoomRepository {
      */
     fun getAllRecipes(): LiveData<List<Recipe>> = recipeDao.getAllRecipes()
 
-    fun getRecipe(id: Int): LiveData<Recipe> = recipeDao.getRecipe(id)
 
-    fun updateRecipe(recipe: Recipe) = recipeDao.updateRecipe(recipe)
-
-    suspend fun deleteRecipe(recipe: Recipe) = recipeDao.deleteRecipe(recipe)
 
 
 }

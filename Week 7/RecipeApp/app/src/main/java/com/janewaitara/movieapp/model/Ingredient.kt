@@ -5,18 +5,7 @@ import android.os.Parcelable
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Recipes(
-    val id : Int,
-    val title: String,
-    val readyInMinutes: Int,
-    val image: String,
-    val summary: String,
-    val instructions: String,
-    val extendedIngredients: Array<Ingredient>
-)
-
-@Serializable
-class Ingredient (var originalString: String) : Parcelable {
+class Ingredient (val originalString: String) : Parcelable {
     constructor(parcel: Parcel) : this(parcel.readString()!!) {
     }
 

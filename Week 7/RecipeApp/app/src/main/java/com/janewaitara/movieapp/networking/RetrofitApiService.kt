@@ -9,7 +9,7 @@ import retrofit2.http.Query
  * */
 interface RemoteApiService {
 
-    @GET("/recipes/random")
+    @GET("/random")
     suspend fun getRecipes(
         @Query("apiKey") apiKey: String,
         @Query("number") number: Int

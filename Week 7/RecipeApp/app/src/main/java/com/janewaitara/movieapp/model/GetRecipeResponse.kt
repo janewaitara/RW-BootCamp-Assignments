@@ -4,4 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class GetRecipesResponse(
-    val recipes: List<Recipes> = mutableListOf())
+    val recipes: List<Recipe> = mutableListOf())
+
+

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.janewaitara.movieapp.R
 import com.janewaitara.movieapp.model.Recipe
+import com.squareup.picasso.Picasso
 
 class RecipeAdapter(val clickListener: RecipeListClickListener) : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
 
@@ -34,7 +35,7 @@ class RecipeAdapter(val clickListener: RecipeListClickListener) : RecyclerView.A
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
 
-        holder.recipeImage.setImageResource(recipeList[position].image)
+        Picasso.get().load(recipeList[position].image).into(holder.recipeImage)
         holder.recipeName.text = recipeList[position].title
         holder.itemView.setOnClickListener {
             clickListener.recipeItemClicked(recipeList[position])

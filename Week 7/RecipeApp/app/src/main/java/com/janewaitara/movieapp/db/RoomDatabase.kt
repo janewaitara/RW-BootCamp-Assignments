@@ -70,18 +70,18 @@ abstract class RecipeDatabase: RoomDatabase(){
                     context,
                     RecipeDatabase::class.java,
                     "movie_database"
-                ).addCallback(
+                )/*.addCallback(
                     RecipeDatabaseCallback(
                         CoroutineScope(Dispatchers.IO)
                     )
-                ).build()
+                )*/.build()
                 INSTANCE = instance
                 // return instance
                 instance
             }
         }
     }
-    private class RecipeDatabaseCallback(private val scope: CoroutineScope)
+ /*   private class RecipeDatabaseCallback(private val scope: CoroutineScope)
         : RoomDatabase.Callback(){
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
@@ -93,6 +93,6 @@ abstract class RecipeDatabase: RoomDatabase(){
             }
         }
 
-    }
+    }*/
 
 }

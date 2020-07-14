@@ -1,7 +1,9 @@
 package com.janewaitara.movieapp.ui.recipes
 
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +14,10 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.janewaitara.movieapp.storage.RecipeSharedPrefs
 import com.janewaitara.movieapp.R
 import com.janewaitara.movieapp.model.Recipe
+import com.janewaitara.movieapp.networking.NetworkStatusChecker
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
@@ -23,6 +29,9 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
     private lateinit var loginPrefs: RecipeSharedPrefs
 
 
+    private val networkStatusChecker by lazy {
+        NetworkStatusChecker(activity?.getSystemService(ConnectivityManager::class.java))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,12 +50,24 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
 
         recipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
 
+        getAllRecipesFromApi()
+
         lifecycleScope.launch{
             recipeViewModel.allRecipes.observe(viewLifecycleOwner, Observer{ recipes ->
                 recipes?.let { adapter.setRecipes(it) }
             })
         }
         loginPrefs = RecipeSharedPrefs()
+    }
+
+
+    private fun getAllRecipesFromApi() {
+
+        networkStatusChecker.performIfConnectedToInternet {
+            CoroutineScope(Dispatchers.Main).launch {
+                recipeViewModel.insertRecipes()
+            }
+        }
     }
 
     override fun recipeItemClicked(recipe: Recipe) {
