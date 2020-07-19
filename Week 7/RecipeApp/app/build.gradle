@@ -87,7 +87,12 @@ dependencies {
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
 
     //retrofit library
-    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation "com.squareup.retrofit2:converter-moshi:2.7.1"
+
+    //    Dependencies for Moshi
+    implementation "com.squareup.moshi:moshi:1.8.0"
+    implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
 
     //retrofit converter which works with kotlin serialization
     implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.4.0'
