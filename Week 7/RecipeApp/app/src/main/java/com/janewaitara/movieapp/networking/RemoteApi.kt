@@ -4,7 +4,7 @@ import android.util.Log
 import com.janewaitara.movieapp.BuildConfig
 import com.janewaitara.movieapp.model.*
 
-const val BASE_URL = "https://api.spoonacular.com/recipes/"
+const val BASE_URL = "https://api.spoonacular.com/"
 
 class RemoteApi (private val remoteApiService: RemoteApiService){
 
@@ -16,11 +16,10 @@ class RemoteApi (private val remoteApiService: RemoteApiService){
 
         val data = remoteApiService.getRecipes(apiKey, numberOfRecipes)
 
-        Log.d("DATA", data.recipes[1].instructions)
+        Log.d("DATA", data.recipes[1].image)
         Success(data.recipes)
     }catch (error: Throwable){
         Failure(error)
     }
 
 }
-
