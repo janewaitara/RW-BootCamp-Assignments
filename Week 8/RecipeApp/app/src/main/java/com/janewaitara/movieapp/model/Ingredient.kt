@@ -5,11 +5,13 @@ import android.os.Parcelable
 import kotlinx.serialization.Serializable
 
 
-class Ingredient (val originalString: String) : Parcelable {
-    constructor(parcel: Parcel) : this(parcel.readString()!!) {
+class Ingredient (val image: String,
+                  val originalString: String) : Parcelable {
+    constructor(parcel: Parcel) : this( parcel.readString()!!,parcel.readString()!!) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(image)
         parcel.writeString(originalString)
     }
 

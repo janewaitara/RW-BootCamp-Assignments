@@ -2,16 +2,22 @@ package com.janewaitara.movieapp.ui.recipes
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import com.janewaitara.movieapp.R
+import com.janewaitara.movieapp.model.Ingredient
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_recipe_detail.*
 
 class RecipeDetailFragment : Fragment() {
+
+    private lateinit var ingredientsRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,10 +41,15 @@ class RecipeDetailFragment : Fragment() {
             recipe_duration.text = args.recipe.readyInMinutes.toString()
 
             val ingredients = StringBuilder()
-            args.recipe.extendedIngredients.forEach { ingredient->
+            val ingredientList = args.recipe.extendedIngredients
+            Log.d("IMAGE", "Image: ${ingredientList[1].image}")
+            ingredientList.forEach { ingredient->
                 ingredients.append('\u2666'.toString()).append("  ").append(ingredient.originalString).append("\n")
             }
             recipe_ingredients.text = ingredients
+
+            //populating the ingredient recyclerView
+            populateIngredientRecyclerView(view, ingredientList)
 
             val instructionsBuilder = StringBuilder()
             val recipeInstructions = args.recipe.instructions
@@ -49,6 +60,15 @@ class RecipeDetailFragment : Fragment() {
             }
             recipe_instructions.text = instructionsBuilder
         }
+    }
+
+    fun populateIngredientRecyclerView(view: View, ingredientList: List<Ingredient>){
+        ingredientsRecyclerView = view.findViewById(R.id.recipeRecyclerView)
+        ingredientsRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        val adapter = IngredientsAdapter(ingredientList)
+        ingredientsRecyclerView.adapter = adapter
+
+        Log.d("IMAGE", "Image: ${ingredientList[1].image}")
     }
 
 }

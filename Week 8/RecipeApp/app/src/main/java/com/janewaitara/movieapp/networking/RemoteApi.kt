@@ -16,7 +16,7 @@ class RemoteApi (private val remoteApiService: RemoteApiService){
 
         val data = remoteApiService.getRecipes(apiKey, numberOfRecipes)
 
-        Log.d("DATA", data.recipes[1].image)
+        Log.d("DATA", "${data.recipes[1].image} \n ${data.recipes[1].extendedIngredients[1].image}" )
         Success(data.recipes)
     }catch (error: Throwable){
         Failure(error)
