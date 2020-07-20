@@ -1,7 +1,7 @@
-package com.janewaitara.movieapp.model
+package com.janewaitara.movieapp.model.response
 
+import com.janewaitara.movieapp.model.Recipe
 import com.squareup.moshi.JsonClass
-import kotlinx.serialization.Serializable
 
 @JsonClass(generateAdapter = true)
 data class GetRecipesResponse(
