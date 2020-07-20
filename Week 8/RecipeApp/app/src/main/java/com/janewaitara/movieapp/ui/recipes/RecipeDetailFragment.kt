@@ -33,14 +33,21 @@ class RecipeDetailFragment : Fragment() {
             Picasso.get().load(args.recipe.image).into(recipe_image)
             recipe_summary.text = args.recipe.summary
             recipe_duration.text = args.recipe.readyInMinutes.toString()
-            recipe_instructions.text = args.recipe.instructions
-            val sb = StringBuilder()
-            var count = 1
+
+            val ingredients = StringBuilder()
             args.recipe.extendedIngredients.forEach { ingredient->
-                sb.append(count).append(". ").append(ingredient.originalString).append("\n")
-                count++
+                ingredients.append('\u2666'.toString()).append("  ").append(ingredient.originalString).append("\n")
             }
-            recipe_ingredients.text = sb
+            recipe_ingredients.text = ingredients
+
+            val instructionsBuilder = StringBuilder()
+            val recipeInstructions = args.recipe.instructions
+            val instructions = recipeInstructions.split(".")
+            val filteredInstructions = instructions.filterNot { it == "<p>"|| it == "</p"|| it == "</li>" || it == "<li>"|| it == "<ol>" }
+            filteredInstructions.forEach { instruction->
+                instructionsBuilder.append('\u2666'.toString()).append("  ").append(instruction).append("\n")
+            }
+            recipe_instructions.text = instructionsBuilder
         }
     }
 

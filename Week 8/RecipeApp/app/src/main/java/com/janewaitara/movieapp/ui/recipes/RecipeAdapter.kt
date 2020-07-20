@@ -35,7 +35,12 @@ class RecipeAdapter(val clickListener: RecipeListClickListener) : RecyclerView.A
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
 
-        Picasso.get().load(recipeList[position].image).into(holder.recipeImage)
+        Picasso.get()
+            .load(recipeList[position].image)
+            .fit()
+
+            .centerCrop()
+            .into(holder.recipeImage)
         holder.recipeName.text = recipeList[position].title
         holder.itemView.setOnClickListener {
             clickListener.recipeItemClicked(recipeList[position])
