@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_recipeListFragment_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment" />
+        <action
+            android:id="@+id/action_recipeListFragment_to_searchRecipeFragment"
+            app:destination="@id/searchRecipeFragment" />
     </fragment>
     <fragment
         android:id="@+id/recipeDetailFragment"
@@ -31,5 +34,14 @@
         <argument
             android:name="recipe"
             app:argType="com.janewaitara.movieapp.model.Recipe" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchRecipeFragment"
+        android:name="com.janewaitara.movieapp.ui.recipes.searchRecipe.SearchRecipeFragment"
+        android:label="fragment_search_recipe"
+        tools:layout="@layout/fragment_search_recipe" >
+        <argument
+            android:name="recipeList"
+            app:argType="com.janewaitara.movieapp.model.response.SearchRecipe[]" />
     </fragment>
 </navigation>

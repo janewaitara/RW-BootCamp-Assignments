@@ -2,8 +2,8 @@ package com.janewaitara.movieapp.ui.recipes
 
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.util.Log
 import android.view.*
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,11 +13,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.janewaitara.movieapp.storage.RecipeSharedPrefs
 import com.janewaitara.movieapp.R
+import com.janewaitara.movieapp.RecipeApplication
 import com.janewaitara.movieapp.model.Recipe
+import com.janewaitara.movieapp.model.Success
+import com.janewaitara.movieapp.model.response.SearchRecipe
 import com.janewaitara.movieapp.networking.NetworkStatusChecker
+import kotlinx.android.synthetic.main.fragment_recipe_list.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
@@ -28,6 +31,7 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
 
     private lateinit var loginPrefs: RecipeSharedPrefs
 
+    private val remoteApi by lazy { RecipeApplication.remoteApi }
 
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(activity?.getSystemService(ConnectivityManager::class.java))
@@ -43,10 +47,38 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        recipe_search_view.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+               query?.let {
+                   if (it.isNotBlank())
+                       filterRecipes(it)
+               }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val minimumCharToSearch = 2
+                newText?.let {
+                    setDefaultViewVisibilityGone()
+                    //setProgressBarVisibilityTrue()
+                    if (it.length >= minimumCharToSearch) {
+
+                        filterRecipes(it)
+                    }
+                    else {
+                        //  updateUiWithShowList(emptyList())
+                    }
+                }
+                return true
+            }
+
+        })
+
         recipeRecyclerView = view.findViewById(R.id.recipeRecyclerView)
         recipeRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        val adapter = RecipeAdapter(this)
-        recipeRecyclerView.adapter = adapter
+        val recipeAdapter = RecipeAdapter(this)
+        recipeRecyclerView.adapter = recipeAdapter
 
         recipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
 
@@ -54,12 +86,34 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
 
         lifecycleScope.launch{
             recipeViewModel.allRecipes.observe(viewLifecycleOwner, Observer{ recipes ->
-                recipes?.let { adapter.setRecipes(it) }
+                recipes?.let { recipeAdapter.setRecipes(it) }
             })
         }
         loginPrefs = RecipeSharedPrefs()
+
     }
 
+    private fun filterRecipes(searchParameters: String) {
+        networkStatusChecker.performSearchIfConnectedToInternet (::displayNoInternetMessage){
+            lifecycleScope.launch {
+                val searchRecipeResult = remoteApi.searchRecipe(searchParameters)
+                Log.d("Search Results", searchRecipeResult.toString())
+
+
+                if (searchRecipeResult is Success){
+                    val recipeList = searchRecipeResult.data
+
+                    showSearchFragment(recipeList.toTypedArray())
+                }else{
+                    //
+                }
+            }
+        }
+    }
+
+    private fun displayNoInternetMessage() {
+        no_internet_message.visibility = View.VISIBLE
+    }
 
     private fun getAllRecipesFromApi() {
 
@@ -83,6 +137,15 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
 
     }
 
+    private fun showSearchFragment(recipeList: Array<SearchRecipe>){
+        view?.let {
+            val action = RecipeListFragmentDirections.actionRecipeListFragmentToSearchRecipeFragment(recipeList)
+
+            it.findNavController().navigate(action)
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
@@ -90,7 +153,8 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.logout_menu,menu)
+        inflater.inflate(R.menu.menu_items,menu)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -103,7 +167,21 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
                     it.findNavController().navigate(R.id.action_recipeListFragment_to_loginFragment)
                 }
             }
+
         }
         return true
     }
+
+    fun setDefaultViewVisibilityGone(){
+        welcome_recipe_note.visibility = View.GONE
+        popular_recipes.visibility = View.GONE
+        recipeRecyclerView.visibility = View.GONE
+
+    }
+
+    fun setProgressBarVisibilityTrue(){
+        search_recipe_progress_bar.visibility = View.VISIBLE
+    }
+
+
 }

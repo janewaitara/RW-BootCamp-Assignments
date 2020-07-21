@@ -1,4 +1,5 @@
-package com.janewaitara.movieapp.ui.recipes
+package com.janewaitara.movieapp.ui.recipes.searchRecipe
+
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,30 +12,30 @@ import com.janewaitara.movieapp.model.Recipe
 import com.janewaitara.movieapp.model.response.SearchRecipe
 import com.squareup.picasso.Picasso
 
-class RecipeAdapter(val clickListener: RecipeListClickListener) : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
+class SearchRecipeAdapter(val clickListener: SearchRecipeListClickListener) : RecyclerView.Adapter<SearchRecipeAdapter.SearchRecipeViewHolder>() {
 
-    private var recipeList = emptyList<Recipe>() //Cached copy of recipes
+    private var recipeList = emptyList<SearchRecipe>() //Cached copy of recipes
 
     //notifies all other objects whenever a View is clicked
-    interface RecipeListClickListener{
-        fun recipeItemClicked(recipe: Recipe)
+    interface SearchRecipeListClickListener{
+        fun searchRecipeItemClicked(recipe: SearchRecipe)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchRecipeViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recipe_list,parent,false)
-        return RecipeViewHolder(
+        return SearchRecipeViewHolder(
             view
         )
     }
 
     override fun getItemCount() = recipeList.size
 
-    internal fun setRecipes(recipes: List<Recipe>)  {
+    internal fun setSearchRecipes(recipes: List<SearchRecipe>)  {
         this.recipeList = recipes
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchRecipeViewHolder, position: Int) {
 
         Picasso.get()
             .load(recipeList[position].image)
@@ -42,12 +43,14 @@ class RecipeAdapter(val clickListener: RecipeListClickListener) : RecyclerView.A
 
             .centerCrop()
             .into(holder.recipeImage)
+
         holder.recipeName.text = recipeList[position].title
+
         holder.itemView.setOnClickListener {
-            clickListener.recipeItemClicked(recipeList[position])
+            clickListener.searchRecipeItemClicked(recipeList[position])
         }
     }
-    class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class SearchRecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         var recipeName = itemView.findViewById (R.id.recipe_name) as TextView
         var recipeImage = itemView.findViewById (R.id.recipe_image_card) as ImageView

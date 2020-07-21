@@ -20,6 +20,21 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <SearchView
+        android:id="@+id/recipe_search_view"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/padding_standard"
+        android:queryBackground="@android:color/transparent"
+        android:queryHint="Search Recipe"
+        android:background="@drawable/search_view"
+        android:iconifiedByDefault="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_recipe_note">
+        <requestFocus />
+    </SearchView>
+
     <TextView
         android:id="@+id/popular_recipes"
         android:layout_width="wrap_content"
@@ -31,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_recipe_note"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_search_view"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -43,5 +58,34 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/popular_recipes"/>
+
+    <TextView
+        android:id="@+id/no_internet_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_standard"
+        android:text="No internet"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/search_recipe_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        style="?android:attr/progressBarStyleLarge"
+        android:visibility="invisible"
+        android:outlineAmbientShadowColor="@color/colorAccent"
+        android:outlineSpotShadowColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

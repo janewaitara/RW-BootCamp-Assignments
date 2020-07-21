@@ -18,6 +18,13 @@ class NetworkStatusChecker(private val connectivityManager : ConnectivityManager
             action()
         }
     }
+    inline fun performSearchIfConnectedToInternet(actionNoNetworkAvailable: () -> Unit, action: ()-> Unit){
+        if(hasInternetConnection()){
+            action()
+        }else{
+            actionNoNetworkAvailable()
+        }
+    }
 
     fun hasInternetConnection(): Boolean {
         val network = connectivityManager?.activeNetwork ?: return false
