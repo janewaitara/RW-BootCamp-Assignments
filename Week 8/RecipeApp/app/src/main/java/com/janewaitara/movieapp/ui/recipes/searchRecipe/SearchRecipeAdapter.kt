@@ -18,7 +18,7 @@ class SearchRecipeAdapter(val clickListener: SearchRecipeListClickListener) : Re
 
     //notifies all other objects whenever a View is clicked
     interface SearchRecipeListClickListener{
-        fun searchRecipeItemClicked(recipe: SearchRecipe)
+        fun searchRecipeItemClicked(searchedRecipe: SearchRecipe)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchRecipeViewHolder {

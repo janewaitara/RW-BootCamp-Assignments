@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.janewaitara.movieapp.R
@@ -49,7 +50,15 @@ class SearchRecipeFragment : Fragment() ,SearchRecipeAdapter.SearchRecipeListCli
     }
 
     override fun searchRecipeItemClicked(recipe: SearchRecipe) {
-        TODO("Not yet implemented")
+        showRecipeInformation(recipe)
+    }
+
+    private fun showRecipeInformation(recipe: SearchRecipe) {
+        view?.let {
+            val action = SearchRecipeFragmentDirections.actionSearchRecipeFragmentToSearchRecipeInformation(recipe.id)
+
+            it.findNavController().navigate(action)
+        }
     }
 
 }

@@ -43,5 +43,16 @@
         <argument
             android:name="recipeList"
             app:argType="com.janewaitara.movieapp.model.response.SearchRecipe[]" />
+        <action
+            android:id="@+id/action_searchRecipeFragment_to_searchRecipeInformation"
+            app:destination="@id/searchRecipeInformation" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchRecipeInformation"
+        android:name="com.janewaitara.movieapp.ui.recipes.searchRecipeInformation.SearchRecipeInformation"
+        android:label="SearchRecipeInformation" >
+        <argument
+            android:name="recipeId"
+            app:argType="integer" />
     </fragment>
 </navigation>

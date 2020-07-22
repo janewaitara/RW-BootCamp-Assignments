@@ -1,5 +1,6 @@
 package com.janewaitara.movieapp.model.response
 
+import com.janewaitara.movieapp.model.Ingredient
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -9,8 +10,8 @@ data class SearchRecipeInformationResponse (
     val summary: String,
     val readyInMinutes: Int,
     val image: String,
-    val instructions: String,
-    val extendedIngredients: List<SearchRecipeIngredient>
+    val instructions: String?,
+    val extendedIngredients: List<Ingredient>
 
 )
 
