@@ -81,7 +81,7 @@ class SearchRecipeInformation : Fragment() {
         ingredientsBuilder(recipeData)
 
         Log.d("Recipe instructions", recipeData.instructions)
-        
+
         when(recipeData.instructions){
             null -> search_recipe_instructions.text  = "Unfortunately no instructions found"
             else -> instructionBuilder(recipeData)
