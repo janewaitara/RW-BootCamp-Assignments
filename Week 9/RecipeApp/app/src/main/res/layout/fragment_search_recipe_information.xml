@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:scrollbars = "vertical"
+    android:scrollbarStyle="insideInset"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <ImageView
+            android:id="@+id/search_recipe_image"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/header_image_size"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_description_recipe_image"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/under_water"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/search_recipe_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:background="@drawable/cardbackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_recipe_image">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingStart="10dp">
+
+                <TextView
+                    android:id="@+id/search_recipe_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_standard"
+                    android:layout_marginTop="@dimen/padding_standard"
+                    android:layout_marginEnd="@dimen/padding_standard"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/recipe_name_text_size"
+                    android:textStyle="bold"
+                    tools:text="Recipe Title" />
+
+                <TextView
+                    android:id="@+id/search_recipe_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_standard"
+                    android:layout_marginTop="@dimen/padding_half"
+                    android:layout_marginEnd="@dimen/padding_standard"
+                    android:textSize="@dimen/recipe_detail_text_size"
+                    android:textStyle="italic"
+                    tools:text="Recipe duration" />
+
+                <TextView
+                    android:id="@+id/search_recipe_ingredients_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_standard"
+                    android:layout_marginTop="@dimen/padding_half"
+                    android:layout_marginEnd="@dimen/padding_standard"
+                    android:textSize="@dimen/recipe_detail_text_size"
+                    android:text="Ingredients"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/search_recipe_ingredients"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:layout_marginStart="@dimen/padding_standard"
+                    android:layout_marginTop="@dimen/padding_half"
+                    android:layout_marginEnd="@dimen/padding_standard"
+                    android:textSize="@dimen/recipe_detail_text_size"
+                    tools:text="Recipe Ingredients" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/search_ingredients_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="10dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardCornerRadius="20dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/search_recipeRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_margin="@dimen/padding_half"
+                        android:layout_height="wrap_content" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/search_recipe_instructions_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_standard"
+                    android:layout_marginTop="@dimen/padding_half"
+                    android:layout_marginEnd="@dimen/padding_standard"
+                    android:textSize="@dimen/recipe_detail_text_size"
+                    android:text="Instructions"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/search_recipe_instructions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:layout_marginStart="@dimen/padding_standard"
+                    android:layout_marginTop="@dimen/padding_half"
+                    android:layout_marginEnd="@dimen/padding_standard"
+                    android:textSize="@dimen/recipe_detail_text_size"
+                    tools:text="Search Recipe Instructions" />
+                <TextView
+                    android:id="@+id/search_recipe_summary_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_standard"
+                    android:layout_marginTop="@dimen/padding_half"
+                    android:layout_marginEnd="@dimen/padding_standard"
+                    android:textSize="@dimen/recipe_detail_text_size"
+                    android:text="Summary"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/search_recipe_summary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:layout_marginStart="@dimen/padding_standard"
+                    android:layout_marginTop="@dimen/padding_half"
+                    android:layout_marginEnd="@dimen/padding_standard"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="@dimen/recipe_detail_text_size"
+                    tools:text="Recipe Summary" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
