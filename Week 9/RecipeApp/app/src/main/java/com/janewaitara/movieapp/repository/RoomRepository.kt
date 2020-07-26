@@ -1,16 +1,11 @@
 package com.janewaitara.movieapp.repository
 
 import android.os.Build
-import android.widget.Toast
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
 import androidx.work.*
-import com.janewaitara.movieapp.RecipeApplication
 import com.janewaitara.movieapp.db.RecipeDao
 import com.janewaitara.movieapp.db.RecipeDatabase
 import com.janewaitara.movieapp.model.Recipe
-import com.janewaitara.movieapp.model.Success
-import com.janewaitara.movieapp.ui.recipes.RecipeViewModel
 import com.janewaitara.movieapp.worker.SynchronizeDataWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

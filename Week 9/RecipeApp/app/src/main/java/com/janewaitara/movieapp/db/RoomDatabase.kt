@@ -2,14 +2,9 @@ package com.janewaitara.movieapp.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import androidx.sqlite.db.SupportSQLiteDatabase
-import com.janewaitara.movieapp.model.Recipe
 import com.janewaitara.movieapp.RecipeApplication
 import com.janewaitara.movieapp.model.IngredientsConverter
-import com.janewaitara.movieapp.ui.recipes.RecipeViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.janewaitara.movieapp.model.Recipe
 
 
 @Dao
