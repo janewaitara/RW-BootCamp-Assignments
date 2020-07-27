@@ -29,6 +29,9 @@ interface RecipeDao{
     @Delete
     suspend fun deleteRecipe(recipe: Recipe)
 
+    @Query("DELETE FROM recipe_table")
+    suspend fun clearRecipes()
+
     @Update
     fun updateRecipe(recipe: Recipe)
 
@@ -40,22 +43,22 @@ abstract class RecipeDatabase: RoomDatabase(){
 
     abstract fun recipeDao(): RecipeDao
 
-    companion object{
+   /* companion object{
 
-        /**Singleton prevents multiple instances of
-         *  database opening at the same time.*/
+        *//**Singleton prevents multiple instances of
+         *  database opening at the same time.*//*
         @Volatile
         private var INSTANCE: RecipeDatabase? = null
         val context =
             RecipeApplication.getAppContext()
 
-        /**
+        *//**
          * This function returns the singleton. It'll create the database the
          *  first time it's accessed, using Room's database
          *  builder to create a RoomDatabase object in the
          *  application context from the WordRoomDatabase class
          *  and names it "movie_database".
-         * */
+         * *//*
         fun getDatabase(): RecipeDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
@@ -65,29 +68,13 @@ abstract class RecipeDatabase: RoomDatabase(){
                     context,
                     RecipeDatabase::class.java,
                     "movie_database"
-                )/*.addCallback(
-                    RecipeDatabaseCallback(
-                        CoroutineScope(Dispatchers.IO)
-                    )
-                )*/.build()
+                ).build()
                 INSTANCE = instance
                 // return instance
                 instance
             }
         }
-    }
- /*   private class RecipeDatabaseCallback(private val scope: CoroutineScope)
-        : RoomDatabase.Callback(){
-        override fun onCreate(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
-            scope.launch {
-                var recipeDao = getDatabase()
-                    .recipeDao()
-                //populating
-                recipeDao.insertAllRecipes(RecipeViewModel.recipeList)
-            }
-        }
-
     }*/
-
 }
+
+const val DATABASE_NAME = "recipe_database"

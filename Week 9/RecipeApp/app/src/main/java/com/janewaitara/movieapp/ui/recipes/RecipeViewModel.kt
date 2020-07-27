@@ -1,7 +1,6 @@
 package com.janewaitara.movieapp.ui.recipes
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +9,21 @@ import com.janewaitara.movieapp.repository.RoomRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class RecipeViewModel(  private val repository: RoomRepository = RoomRepository()): ViewModel() {
+
+class RecipeViewModel(private val repository: RoomRepository): ViewModel() {
+
+    init {
+
+        Log.d("Entering ViewModel", "Entering Init")
+
+        viewModelScope.launch {
+
+            repository.getRecipesAndInsertIntoTheDatabase()
+
+            Log.d("Data ViewModel ", repository.getRecipesFromApi().toString())
+        }
+        Log.d("Data Test", repository.getAllRecipes().value.toString())
+    }
 
 
     /**Using LiveData has several benefits:
@@ -31,5 +44,6 @@ class RecipeViewModel(  private val repository: RoomRepository = RoomRepository(
             repository.addAllRecipes()
         }
     }
+
 
 }
