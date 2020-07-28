@@ -34,8 +34,6 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
 
     private lateinit var loginPrefs: RecipeSharedPrefs
 
-    private val remoteApi by lazy { RecipeApplication.remoteApi }
-
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(activity?.getSystemService(ConnectivityManager::class.java))
     }
@@ -100,17 +98,22 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
     private fun filterRecipes(searchParameters: String) {
         networkStatusChecker.performSearchIfConnectedToInternet (::displayNoInternetMessage){
             lifecycleScope.launch {
-                val searchRecipeResult = remoteApi.searchRecipe(searchParameters)
-                Log.d("Search Results", searchRecipeResult.toString())
 
+                recipeViewModel.searchRecipeFromApiUsingSearchParameter(searchParameters)
 
-                if (searchRecipeResult is Success){
-                    val recipeList = searchRecipeResult.data
+                /**
+                 * Used this@RecipeListFragment in place of the lifeCycleOwner to solve the crash from the error
+                 * "Can't access the Fragment View's LifecycleOwner when getView() is null i.e., before onCreateView() or after onDestroyView()"*/
 
-                    showSearchFragment(recipeList.toTypedArray())
-                }else{
-                    //
-                }
+                Log.d("Search Results", searchParameters)
+                recipeViewModel.getSearchedRecipeLiveData().observe(this@RecipeListFragment, Observer{ searchedRecipes->
+                    searchedRecipes?.let { recipeList->
+                        Log.d("Getting the Live data", recipeViewModel.getSearchedRecipeLiveData().value?.size.toString())
+                        showSearchFragment(recipeList.toTypedArray())
+                        Log.d("Nav To Search Fragment ", recipeList[1].title)
+                    }
+                })
+
             }
         }
     }

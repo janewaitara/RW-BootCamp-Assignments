@@ -33,7 +33,7 @@ class RecipeApplication:Application() {
 
         val repository: RoomRepository by lazy { RoomRepository(recipeDao, remoteApi)}
 
-        val recipeViewModelFactory by lazy { RecipeViewModelFactory(repository) }
+        val recipeViewModelFactory by lazy { RecipeViewModelFactory(repository, remoteApi) }
     }
 
     override fun onCreate() {
