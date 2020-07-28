@@ -10,6 +10,7 @@ import com.janewaitara.movieapp.networking.RemoteApi
 import com.janewaitara.movieapp.networking.buildApiService
 import com.janewaitara.movieapp.repository.RoomRepository
 import com.janewaitara.movieapp.ui.recipes.recipeList.RecipeViewModelFactory
+import com.janewaitara.movieapp.ui.recipes.searchRecipeInformation.SearchRecipeInformationViewModelFactory
 
 class RecipeApplication:Application() {
     companion object{
@@ -34,6 +35,9 @@ class RecipeApplication:Application() {
         val repository: RoomRepository by lazy { RoomRepository(recipeDao, remoteApi)}
 
         val recipeViewModelFactory by lazy { RecipeViewModelFactory(repository, remoteApi) }
+
+        val searchRecipeInfoViewModelFactory by lazy{
+            SearchRecipeInformationViewModelFactory(remoteApi) }
     }
 
     override fun onCreate() {

@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -18,6 +20,7 @@ import com.janewaitara.movieapp.model.response.SearchRecipeInformationResponse
 import com.janewaitara.movieapp.model.response.SearchRecipeIngredient
 import com.janewaitara.movieapp.networking.NetworkStatusChecker
 import com.janewaitara.movieapp.ui.recipes.IngredientsAdapter
+import com.janewaitara.movieapp.ui.recipes.RecipeViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_recipe_detail.*
 import kotlinx.android.synthetic.main.fragment_search_recipe_information.*
@@ -26,7 +29,10 @@ import kotlinx.coroutines.launch
 
 
 class SearchRecipeInformation : Fragment() {
-    private val remoteApi by lazy { RecipeApplication.remoteApi }
+    private val searchRecipeInfoViewModel by lazy {
+        ViewModelProvider(this, RecipeApplication.searchRecipeInfoViewModelFactory)
+            .get(SearchRecipeInformationViewModel::class.java)
+    }
 
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(activity?.getSystemService(ConnectivityManager::class.java))
@@ -60,18 +66,15 @@ class SearchRecipeInformation : Fragment() {
     private fun getRecipeInformationFromId( view: View,recipeId: Int){
         networkStatusChecker.performIfConnectedToInternet {
             lifecycleScope.launch (Dispatchers.Main){
-                val searchRecipeInformationResult = remoteApi.searchRecipeInformation(recipeId)
-                Log.d("Recipe Information", searchRecipeInformationResult.toString())
 
-                if  (searchRecipeInformationResult is Success){
-                    bindResultsWithViews( view ,searchRecipeInformationResult.data)
+                searchRecipeInfoViewModel.searchRecipeFromApiUsingSearchParameter(recipeId)
 
-                }else{
-                    //show a no data message
-                }
+                searchRecipeInfoViewModel.getSearchedInfoRecipeLiveData().observe(viewLifecycleOwner, Observer { searchRecipeInfoResponse ->
+                    bindResultsWithViews(view, searchRecipeInfoResponse)
+                })
+
             }
         }
-
     }
 
     private fun bindResultsWithViews( view: View, recipeData: SearchRecipeInformationResponse) {
@@ -80,7 +83,7 @@ class SearchRecipeInformation : Fragment() {
         search_recipe_duration.text = recipeData.readyInMinutes.toString()
         ingredientsBuilder(recipeData)
 
-        Log.d("Recipe instructions", recipeData.instructions)
+        Log.d("Recipe instructions", recipeData.instructions ?: "")
 
         when(recipeData.instructions){
             null -> search_recipe_instructions.text  = "Unfortunately no instructions found"
