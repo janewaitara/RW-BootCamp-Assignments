@@ -21,7 +21,7 @@ class SearchRecipeInformationViewModel(private val remoteApi: RemoteApi): ViewMo
     suspend fun searchRecipeFromApiUsingSearchParameter(recipeId: Int){
         val searchedRecipesInfo = remoteApi.searchRecipeInformation(recipeId)
 
-        Log.d("Recipe Information", searchedRecipesInfo.toString())
+        //Log.d("Recipe Information", searchedRecipesInfo.toString())
 
         if (searchedRecipesInfo is Success) {
             searchedRecipeInfoLiveData.postValue(searchedRecipesInfo.data)
