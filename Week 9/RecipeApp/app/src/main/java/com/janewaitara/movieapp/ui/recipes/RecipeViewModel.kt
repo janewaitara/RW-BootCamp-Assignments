@@ -20,15 +20,15 @@ class RecipeViewModel(private val repository: RoomRepository,
 
     init {
 
-        Log.d("Entering ViewModel", "Entering Init")
+        //Log.d("Entering ViewModel", "Entering Init")
 
         viewModelScope.launch {
 
             repository.getRecipesAndInsertIntoTheDatabase()
 
-            Log.d("Data ViewModel ", repository.getRecipesFromApi().toString())
+           // Log.d("Data ViewModel ", repository.getRecipesFromApi().toString())
         }
-        Log.d("Data Test", repository.getAllRecipes().value.toString())
+       // Log.d("Data Test", repository.getAllRecipes().value.toString())
     }
 
 

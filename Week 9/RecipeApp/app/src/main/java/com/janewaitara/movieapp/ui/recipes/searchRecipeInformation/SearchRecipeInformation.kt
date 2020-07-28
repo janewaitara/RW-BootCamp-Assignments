@@ -70,7 +70,11 @@ class SearchRecipeInformation : Fragment() {
                 searchRecipeInfoViewModel.searchRecipeFromApiUsingSearchParameter(recipeId)
 
                 searchRecipeInfoViewModel.getSearchedInfoRecipeLiveData().observe(viewLifecycleOwner, Observer { searchRecipeInfoResponse ->
-                    bindResultsWithViews(view, searchRecipeInfoResponse)
+                    /**
+                     * Wrapped within let expression since the response can be null*/
+                    searchRecipeInfoResponse?.let { searchRecipeInfo->
+                        bindResultsWithViews(view, searchRecipeInfo)
+                    }
                 })
 
             }
