@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Recipe App</string>
+    <string name="content_description_recipe_image">Recipe image</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="enter_your_password">Enter Your password</string>
+    <string name="enter_your_username">Enter Your UserName</string>
+    <string name="movie_app">Movie App</string>
+    <string name="password_empty_error">Password can not be empty</string>
+    <string name="password_length_error">Password should be greater than 6</string>
+    <string name="username_empty_error">User name can not be empty</string>
+    <string name="username_length_error">Enter a valid user name</string>
+</resources>
