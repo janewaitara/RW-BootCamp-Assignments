@@ -1,9 +1,6 @@
 package com.janewaitara.movieapp.di
 
-import com.janewaitara.movieapp.networking.BASE_URL
-import com.janewaitara.movieapp.networking.RemoteApiService
-import com.janewaitara.movieapp.networking.buildClient
-import com.janewaitara.movieapp.networking.buildMoshi
+import com.janewaitara.movieapp.networking.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -46,4 +43,8 @@ val networkModule = module {
     single {
         get<Retrofit>().create(RemoteApiService::class.java)
     }
+}
+
+val remoteApiModule = module{
+    single { RemoteApi(get()) }
 }

@@ -2,10 +2,7 @@ package com.janewaitara.movieapp
 
 import android.app.Application
 import android.content.Context
-import com.janewaitara.movieapp.di.databaseModule
-import com.janewaitara.movieapp.di.networkModule
-import com.janewaitara.movieapp.di.presentationModule
-import com.janewaitara.movieapp.di.repositoryModule
+import com.janewaitara.movieapp.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -55,7 +52,8 @@ class RecipeApplication:Application() {
                    databaseModule,
                    repositoryModule,
                    networkModule,
-                   presentationModule
+                   presentationModule,
+                   remoteApiModule
                )
            )
        }
