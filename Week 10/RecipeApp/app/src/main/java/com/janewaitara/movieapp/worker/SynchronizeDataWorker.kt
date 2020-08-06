@@ -5,19 +5,23 @@ import android.widget.Toast
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.janewaitara.movieapp.RecipeApplication
-import com.janewaitara.movieapp.db.RecipeDao
-import com.janewaitara.movieapp.db.RecipeDatabase
 import com.janewaitara.movieapp.model.Success
 import com.janewaitara.movieapp.repository.RoomRepository
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
 /**
  *Synchronize data every e.g. 1 hour. Use a PeriodicWorkRequest to implement this type of behavior.
  * This worker load data from the API, and then store it in the Database.
  */
-class SynchronizeDataWorker(context: Context, workerParameters: WorkerParameters):
-    CoroutineWorker(context,workerParameters) {
 
-    private val repository by lazy { RecipeApplication.repository}
+/**
+ *Implement KoinComponent interface as a way to tell koin that it can inject fields into this class
+ * (which is not a lifeCycle Class)*/
+class SynchronizeDataWorker(context: Context, workerParameters: WorkerParameters):
+    CoroutineWorker(context,workerParameters), KoinComponent {
+
+    private val repository: RoomRepository by inject()
 
     companion object {
         const val WORK_NAME = "SynchronizeDataWorker"

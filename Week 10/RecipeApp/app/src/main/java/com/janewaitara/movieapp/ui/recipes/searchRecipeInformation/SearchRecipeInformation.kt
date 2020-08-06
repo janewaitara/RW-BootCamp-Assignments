@@ -3,36 +3,32 @@ package com.janewaitara.movieapp.ui.recipes.searchRecipeInformation
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.janewaitara.movieapp.R
-import com.janewaitara.movieapp.RecipeApplication
 import com.janewaitara.movieapp.model.Ingredient
-import com.janewaitara.movieapp.model.Success
 import com.janewaitara.movieapp.model.response.SearchRecipeInformationResponse
-import com.janewaitara.movieapp.model.response.SearchRecipeIngredient
 import com.janewaitara.movieapp.networking.NetworkStatusChecker
 import com.janewaitara.movieapp.ui.recipes.IngredientsAdapter
-import com.janewaitara.movieapp.ui.recipes.RecipeViewModel
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_recipe_detail.*
 import kotlinx.android.synthetic.main.fragment_search_recipe_information.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class SearchRecipeInformation : Fragment() {
-    private val searchRecipeInfoViewModel by lazy {
+   /* private val searchRecipeInfoViewModel by lazy {
         ViewModelProvider(this, RecipeApplication.searchRecipeInfoViewModelFactory)
             .get(SearchRecipeInformationViewModel::class.java)
-    }
+    } */
+    private val searchRecipeInfoViewModel: SearchRecipeInformationViewModel by viewModel()
 
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(activity?.getSystemService(ConnectivityManager::class.java))

@@ -6,15 +6,12 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.janewaitara.movieapp.R
-import com.janewaitara.movieapp.RecipeApplication
 import com.janewaitara.movieapp.model.Recipe
-import com.janewaitara.movieapp.model.Success
 import com.janewaitara.movieapp.model.response.SearchRecipe
 import com.janewaitara.movieapp.networking.NetworkStatusChecker
 import com.janewaitara.movieapp.storage.RecipeSharedPrefs
@@ -22,15 +19,17 @@ import kotlinx.android.synthetic.main.fragment_recipe_list.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
 
     private lateinit var recipeRecyclerView: RecyclerView
 
-    private val recipeViewModel by lazy {
+    private val recipeViewModel: RecipeViewModel by viewModel()
+  /*  private val recipeViewModel by lazy {
         ViewModelProvider(this, RecipeApplication.recipeViewModelFactory)
             .get(RecipeViewModel::class.java)
-    }
+    }*/
 
     private lateinit var loginPrefs: RecipeSharedPrefs
 
