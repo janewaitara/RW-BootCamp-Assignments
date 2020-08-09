@@ -49,7 +49,11 @@
             app:argType="com.janewaitara.movieapp.model.response.SearchRecipe[]" />
         <action
             android:id="@+id/action_searchRecipeFragment_to_searchRecipeInformation"
-            app:destination="@id/searchRecipeInformation" />
+            app:destination="@id/searchRecipeInformation"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/searchRecipeInformation"
