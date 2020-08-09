@@ -22,7 +22,11 @@
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_recipeListFragment_to_recipeDetailFragment"
-            app:destination="@id/recipeDetailFragment" />
+            app:destination="@id/recipeDetailFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_recipeListFragment_to_searchRecipeFragment"
             app:destination="@id/searchRecipeFragment" />
