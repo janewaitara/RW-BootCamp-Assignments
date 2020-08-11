@@ -9,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.transition.ChangeBounds
+import androidx.transition.CircularPropagation
+import androidx.transition.TransitionInflater
 
 import com.janewaitara.movieapp.R
 import com.janewaitara.movieapp.model.Ingredient
@@ -23,6 +26,13 @@ class RecipeDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Determine how shared elements are handled
+        sharedElementEnterTransition = TransitionInflater.from(this.context).inflateTransition(R.transition.shared_element_transition)
+        sharedElementReturnTransition =  ChangeBounds().apply {
+            duration = 1500
+            propagation = CircularPropagation()
+            }
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_recipe_detail, container, false)
     }

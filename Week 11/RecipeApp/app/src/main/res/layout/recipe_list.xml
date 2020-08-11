@@ -23,6 +23,7 @@
             android:layout_height="@dimen/recipe_layout_height"
             android:layout_gravity="center"
             android:contentDescription="@string/content_description_recipe_image"
+            android:transitionName="recipeImage"
             android:scaleType="fitXY"
             app:srcCompat="@drawable/under_water" />
 
@@ -35,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginBottom="@dimen/padding_half"
+        android:transitionName="recipeName"
         android:ellipsize="end"
         android:paddingStart="6dp"
         android:singleLine="true"

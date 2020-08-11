@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.core.util.Pair
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.janewaitara.movieapp.R
@@ -16,6 +18,7 @@ import com.janewaitara.movieapp.model.response.SearchRecipe
 import com.janewaitara.movieapp.networking.NetworkStatusChecker
 import com.janewaitara.movieapp.storage.RecipeSharedPrefs
 import kotlinx.android.synthetic.main.fragment_recipe_list.*
+import kotlinx.android.synthetic.main.recipe_list.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -130,15 +133,30 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
         }
     }
 
-    override fun recipeItemClicked(recipe: Recipe) {
-      showDetailsActivity(recipe)
+    override fun recipeItemClicked(view: View, recipe: Recipe) {
+      showDetailsActivity(view,recipe)
     }
 
-    private fun showDetailsActivity(recipe: Recipe){
+    /**
+     * show Details Activity with a shared fragment*/
+    private fun showDetailsActivity(viewToAnimate: View, recipe: Recipe){
         view?.let {
+            //create a pair for the name to be transitioned using the transition name attribute set
+            val recipeName = viewToAnimate.recipe_name
+            val namePair = recipeName to "recipeName"
+
+            //create a pair for the name to be transitioned using the transition name attribute set
+            val recipeImage = viewToAnimate.recipe_image_card
+            val imagePair = recipeImage to "recipeImage"
+
+            //extras maps the view in the recipeListFragment to the view in the recipeDetail
+            val extras = FragmentNavigatorExtras(
+                namePair,imagePair
+            )
             val action = RecipeListFragmentDirections.actionRecipeListFragmentToRecipeDetailFragment(recipe)
-                //trigger the navigation and passing data
-            it.findNavController().navigate(action)
+
+            //trigger the navigation and passing data and animation extras
+            it.findNavController().navigate(action, extras)
         }
 
     }

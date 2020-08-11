@@ -11,13 +11,13 @@ import com.janewaitara.movieapp.model.Recipe
 import com.janewaitara.movieapp.model.response.SearchRecipe
 import com.squareup.picasso.Picasso
 
-class RecipeAdapter(val clickListener: RecipeListClickListener) : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
+class RecipeAdapter(private val clickListener: RecipeListClickListener) : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
 
     private var recipeList = emptyList<Recipe>() //Cached copy of recipes
 
     //notifies all other objects whenever a View is clicked
     interface RecipeListClickListener{
-        fun recipeItemClicked(recipe: Recipe)
+        fun recipeItemClicked(view: View, recipe: Recipe)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
@@ -43,8 +43,8 @@ class RecipeAdapter(val clickListener: RecipeListClickListener) : RecyclerView.A
             .centerCrop()
             .into(holder.recipeImage)
         holder.recipeName.text = recipeList[position].title
-        holder.itemView.setOnClickListener {
-            clickListener.recipeItemClicked(recipeList[position])
+        holder.itemView.setOnClickListener {view->
+            clickListener.recipeItemClicked(view,recipeList[position])
         }
     }
     class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
