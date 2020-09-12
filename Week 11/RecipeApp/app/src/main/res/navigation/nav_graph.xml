@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.janewaitara.movieapp.ui.login.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_movieListFragment"
+            app:destination="@id/recipeListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeListFragment"
+        android:name="com.janewaitara.movieapp.ui.recipes.RecipeListFragment"
+        android:label="fragment_recipe_list"
+        tools:layout="@layout/fragment_recipe_list" >
+        <action
+            android:id="@+id/action_recipeListFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_recipeListFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_recipeListFragment_to_searchRecipeFragment"
+            app:destination="@id/searchRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.janewaitara.movieapp.ui.recipes.RecipeDetailFragment"
+        android:label="RecipeDetailFragment">
+        <argument
+            android:name="recipe"
+            app:argType="com.janewaitara.movieapp.model.Recipe" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchRecipeFragment"
+        android:name="com.janewaitara.movieapp.ui.recipes.searchRecipe.SearchRecipeFragment"
+        android:label="fragment_search_recipe"
+        tools:layout="@layout/fragment_search_recipe" >
+        <argument
+            android:name="recipeList"
+            app:argType="com.janewaitara.movieapp.model.response.SearchRecipe[]" />
+        <action
+            android:id="@+id/action_searchRecipeFragment_to_searchRecipeInformation"
+            app:destination="@id/searchRecipeInformation"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchRecipeInformation"
+        android:name="com.janewaitara.movieapp.ui.recipes.searchRecipeInformation.SearchRecipeInformation"
+        android:label="SearchRecipeInformation" >
+        <argument
+            android:name="recipeId"
+            app:argType="integer" />
+    </fragment>
+</navigation>
