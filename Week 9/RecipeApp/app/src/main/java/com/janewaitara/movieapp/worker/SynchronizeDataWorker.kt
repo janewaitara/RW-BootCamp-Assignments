@@ -8,6 +8,7 @@ import com.janewaitara.movieapp.RecipeApplication
 import com.janewaitara.movieapp.db.RecipeDao
 import com.janewaitara.movieapp.db.RecipeDatabase
 import com.janewaitara.movieapp.model.Success
+import com.janewaitara.movieapp.repository.RoomRepository
 
 /**
  *Synchronize data every e.g. 1 hour. Use a PeriodicWorkRequest to implement this type of behavior.
@@ -16,18 +17,17 @@ import com.janewaitara.movieapp.model.Success
 class SynchronizeDataWorker(context: Context, workerParameters: WorkerParameters):
     CoroutineWorker(context,workerParameters) {
 
-    private val recipeDao by lazy{ RecipeDatabase.getDatabase().recipeDao() }
-    private val remoteApi by lazy { RecipeApplication.remoteApi }
-
+    private val repository by lazy { RecipeApplication.repository}
 
     companion object {
         const val WORK_NAME = "SynchronizeDataWorker"
     }
     override suspend fun doWork(): Result {
-        val result = remoteApi.getRecipes()
+        //repository.clearRecipes()
+        val result = repository.getRecipesFromApi()
 
        return if (result is Success){
-           recipeDao.insertAllRecipes(result.data)
+           repository.insertAllRecipes(result.data)
            Result.success()
         }else{
             Toast.makeText(RecipeApplication.getAppContext(), "Failed to fetch tasks!", Toast.LENGTH_SHORT).show()

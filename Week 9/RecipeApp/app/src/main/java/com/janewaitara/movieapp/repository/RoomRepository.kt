@@ -1,25 +1,29 @@
 package com.janewaitara.movieapp.repository
 
 import android.os.Build
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.work.*
+import com.janewaitara.movieapp.RecipeApplication
 import com.janewaitara.movieapp.db.RecipeDao
 import com.janewaitara.movieapp.db.RecipeDatabase
 import com.janewaitara.movieapp.model.Recipe
+import com.janewaitara.movieapp.model.Result
+import com.janewaitara.movieapp.model.Success
+import com.janewaitara.movieapp.networking.RemoteApi
 import com.janewaitara.movieapp.worker.SynchronizeDataWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
-class RoomRepository {
-    /**
-     * The DAO is initialized  as opposed to the whole database.
-     * This is because it only needs access to the DAO,
-     * since the DAO contains all the read/write methods for the database.
-     * There's no need to expose the entire database to the repository.*/
-
-    private val recipeDao: RecipeDao = RecipeDatabase.getDatabase().recipeDao()
+/**
+ * The DAO is initialized  as opposed to the whole database.
+ * This is because it only needs access to the DAO,
+ * since the DAO contains all the read/write methods for the database.
+ * There's no need to expose the entire database to the repository.*/
+class RoomRepository( private val recipeDao: RecipeDao ,
+                      private val remoteApi: RemoteApi) {
 
     /** define constraints to prevent work from occurring when
     there is no network access or the device is low on battery.
@@ -54,15 +58,6 @@ class RoomRepository {
                     ExistingPeriodicWorkPolicy.KEEP,
                     synchronizeDataWorker
                 )
-
-          /*  val result = remoteApi.getRecipes()
-
-            if (result is Success){
-                recipeDao.insertAllRecipes(result.data)
-            }else{
-                Toast.makeText(RecipeApplication.getAppContext(), "Failed to fetch tasks!", Toast.LENGTH_SHORT).show()
-            }*/
-
         }
 
 
@@ -72,7 +67,32 @@ class RoomRepository {
      */
     fun getAllRecipes(): LiveData<List<Recipe>> = recipeDao.getAllRecipes()
 
+    suspend fun insertAllRecipes(recipes: List<Recipe>){
+        recipeDao.insertAllRecipes(recipes)
+    }
 
+    /**
+     * Clears recipes from the database during synchronization*/
+    suspend fun clearRecipes(){
+        recipeDao.clearRecipes()
+    }
 
+    /**
+     * Get the recipes from the Api*/
+    suspend fun getRecipesFromApi(): Result<List<Recipe>>{
+       return remoteApi.getRecipes()
+    }
+
+    suspend fun getRecipesAndInsertIntoTheDatabase(){
+        val result = getRecipesFromApi()
+
+        return if (result is Success){
+           insertAllRecipes(result.data)
+
+        }else{
+            Toast.makeText(RecipeApplication.getAppContext(), "Failed to fetch tasks!", Toast.LENGTH_SHORT).show()
+
+        }
+    }
 
 }

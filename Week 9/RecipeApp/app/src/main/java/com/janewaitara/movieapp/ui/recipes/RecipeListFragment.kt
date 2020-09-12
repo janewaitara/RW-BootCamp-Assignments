@@ -11,13 +11,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.janewaitara.movieapp.storage.RecipeSharedPrefs
 import com.janewaitara.movieapp.R
 import com.janewaitara.movieapp.RecipeApplication
 import com.janewaitara.movieapp.model.Recipe
 import com.janewaitara.movieapp.model.Success
 import com.janewaitara.movieapp.model.response.SearchRecipe
 import com.janewaitara.movieapp.networking.NetworkStatusChecker
+import com.janewaitara.movieapp.storage.RecipeSharedPrefs
 import kotlinx.android.synthetic.main.fragment_recipe_list.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,11 +27,12 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
 
     private lateinit var recipeRecyclerView: RecyclerView
 
-    private lateinit var recipeViewModel: RecipeViewModel
+    private val recipeViewModel by lazy {
+        ViewModelProvider(this, RecipeApplication.recipeViewModelFactory)
+            .get(RecipeViewModel::class.java)
+    }
 
     private lateinit var loginPrefs: RecipeSharedPrefs
-
-    private val remoteApi by lazy { RecipeApplication.remoteApi }
 
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(activity?.getSystemService(ConnectivityManager::class.java))
@@ -80,12 +81,13 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
         val recipeAdapter = RecipeAdapter(this)
         recipeRecyclerView.adapter = recipeAdapter
 
-        recipeViewModel = ViewModelProvider(this).get(RecipeViewModel::class.java)
 
         getAllRecipesFromApi()
 
+
         lifecycleScope.launch{
             recipeViewModel.allRecipes.observe(viewLifecycleOwner, Observer{ recipes ->
+                Log.d("Data Test Observed", recipeViewModel.allRecipes.value?.size.toString())
                 recipes?.let { recipeAdapter.setRecipes(it) }
             })
         }
@@ -96,17 +98,22 @@ class RecipeListFragment : Fragment(), RecipeAdapter.RecipeListClickListener {
     private fun filterRecipes(searchParameters: String) {
         networkStatusChecker.performSearchIfConnectedToInternet (::displayNoInternetMessage){
             lifecycleScope.launch {
-                val searchRecipeResult = remoteApi.searchRecipe(searchParameters)
-                Log.d("Search Results", searchRecipeResult.toString())
 
+                recipeViewModel.searchRecipeFromApiUsingSearchParameter(searchParameters)
 
-                if (searchRecipeResult is Success){
-                    val recipeList = searchRecipeResult.data
+                /**
+                 * Used this@RecipeListFragment in place of the lifeCycleOwner to solve the crash from the error
+                 * "Can't access the Fragment View's LifecycleOwner when getView() is null i.e., before onCreateView() or after onDestroyView()"*/
 
-                    showSearchFragment(recipeList.toTypedArray())
-                }else{
-                    //
-                }
+                Log.d("Search Results", searchParameters)
+                recipeViewModel.getSearchedRecipeLiveData().observe(this@RecipeListFragment, Observer{ searchedRecipes->
+                    searchedRecipes?.let { recipeList->
+                        Log.d("Getting the Live data", recipeViewModel.getSearchedRecipeLiveData().value?.size.toString())
+                        showSearchFragment(recipeList.toTypedArray())
+                        Log.d("Nav To Search Fragment ", recipeList[1].title)
+                    }
+                })
+
             }
         }
     }
